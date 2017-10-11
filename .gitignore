@@ -20,3 +20,9 @@
 hs_err_pid*
 .idea/
 target/
+mvnw
+mvnw.cmd
+src/main/java/ch/evel/
+src/main/resources/
+src/test/
+warehouse.iml
