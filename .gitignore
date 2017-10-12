@@ -22,7 +22,4 @@ hs_err_pid*
 target/
 mvnw
 mvnw.cmd
-src/main/java/ch/evel/
-src/main/resources/
-src/test/
 warehouse.iml
