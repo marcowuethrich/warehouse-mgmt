@@ -9,10 +9,10 @@
     <div id="page-wrapper">
 
         <!--Page Title-->
-        <div lang="de" th:replace="fragments/page-title :: page-title"></div>
+        <div lang="de" th:include="fragments/page-title :: page-title(${pageTitle})"></div>
 
         <!--Content-->
-        <div th:replace="@{${content}} :: ${content}"></div>
+        <div th:replace="@{'admin/' + ${content}} :: ${content}"></div>
     </div>
 </div>
 <!--Footer-->

@@ -1,8 +1,6 @@
-<div th:fragment="page-title" xmlns:th="http://www.thymeleaf.org">
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">Dashboard</h1>
-        </div>
+<div class="row" th:fragment="page-title(title)" xmlns:th="http://www.thymeleaf.org">
+    <div class="col-lg-12">
+        <h1 class="page-header" th:text="${title}"></h1>
     </div>
 </div>
 

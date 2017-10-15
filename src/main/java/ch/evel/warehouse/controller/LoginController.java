@@ -23,7 +23,8 @@ public class LoginController {
 	
 	@RequestMapping(value="/admin/home", method = RequestMethod.GET)
 	public String home(ModelMap map){
-        map.addAttribute("content","admin/dashboard");
+	    map.addAttribute("pageTitle","Dashboard");
+        map.addAttribute("content","dashboard");
         return "admin/home";
 	}
 }
