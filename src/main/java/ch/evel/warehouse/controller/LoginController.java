@@ -20,7 +20,7 @@ public class LoginController {
 		modelAndView.setViewName("login");
 		return modelAndView;
 	}
-	
+
 	@RequestMapping(value="/admin/home", method = RequestMethod.GET)
 	public String home(ModelMap map){
 	    map.addAttribute("pageTitle","Dashboard");
