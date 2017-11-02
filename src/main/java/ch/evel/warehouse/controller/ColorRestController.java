@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-
 @RestController
 public class ColorRestController {
 
@@ -20,7 +18,7 @@ public class ColorRestController {
 
     @JsonView(DataTablesOutput.View.class)
     @RequestMapping(path = "/data/colors", method = RequestMethod.GET)
-    public DataTablesOutput<Color> getColors(@Valid DataTablesInput input) {
+    public DataTablesOutput<Color> getColors(DataTablesInput input) {
         return colorRestRepository.findAll(input);
     }
 }
