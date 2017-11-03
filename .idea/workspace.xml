@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6b751d9-a56d-41f0-843e-204d34412a59" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/js/jquery.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ch/evel/warehouse/controller/ColorRestController.java" afterPath="$PROJECT_DIR$/src/main/java/ch/evel/warehouse/controller/ColorRestController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/datatables.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/datatables.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/color.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/color.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/footer.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/footer.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/head.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/head.html" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -68,15 +65,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ColorRestController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ColorRestController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ch/evel/warehouse/controller/ColorRestController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="20" column="45" lean-forward="false" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
+            <state relative-caret-position="594">
+              <caret line="35" column="8" lean-forward="true" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#883#884#0" expanded="true" />
-                <element signature="e#940#941#0" expanded="true" />
+                <element signature="e#1170#1171#0" expanded="true" />
+                <element signature="e#1227#1228#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -92,7 +89,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="head.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="head.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/fragments/head.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
@@ -107,8 +104,8 @@
       <file leaf-file-name="datatables.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/datatables.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="558">
-              <caret line="31" column="20" lean-forward="false" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="20" />
+            <state relative-caret-position="342">
+              <caret line="36" column="58" lean-forward="false" selection-start-line="36" selection-start-column="58" selection-end-line="36" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -117,7 +114,7 @@
       <file leaf-file-name="ColorController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ch/evel/warehouse/controller/ColorController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
+            <state relative-caret-position="392">
               <caret line="41" column="10" lean-forward="false" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
               <folding />
             </state>
@@ -209,7 +206,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/js/buttons.print.min.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/css/buttons.dataTables.min.css" />
         <option value="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/css/dataTables.select.min.js.css" />
-        <option value="$PROJECT_DIR$/src/main/java/ch/evel/warehouse/controller/ColorRestController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/static/vendor/jquery/jquery.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/vendor/jquery/jquery.min.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/js/jquery.dataTables.js" />
@@ -217,9 +213,10 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/admin/color.html" />
         <option value="$PROJECT_DIR$/src/main/java/ch/evel/warehouse/db/model/EntityModel.java" />
         <option value="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/js/jquery.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/js/datatables.js" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/fragments/head.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/fragments/footer.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/datatables.js" />
+        <option value="$PROJECT_DIR$/src/main/java/ch/evel/warehouse/controller/ColorRestController.java" />
       </list>
     </option>
   </component>
@@ -699,7 +696,7 @@
       <workItem from="1508146440257" duration="9000" />
       <workItem from="1509114200479" duration="6260000" />
       <workItem from="1509647431555" duration="10898000" />
-      <workItem from="1509719336643" duration="4515000" />
+      <workItem from="1509719336643" duration="7945000" />
     </task>
     <task id="LOCAL-00001" summary="login authentication with bCryptPassword">
       <created>1507841894554</created>
@@ -729,11 +726,18 @@
       <option name="project" value="LOCAL" />
       <updated>1509658326772</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="load datatable editor with right js and css source">
+      <created>1509727995774</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1509727995774</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88787000" />
+    <option name="totallyTimeSpent" value="92217000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="14" y="24" width="1906" height="1116" extended-state="0" />
@@ -748,7 +752,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2497309" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30190572" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30152285" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="SBT Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32798395" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -787,7 +791,8 @@
     <MESSAGE value="fixed passing sub-page title into fragments" />
     <MESSAGE value="show color Datatable with content" />
     <MESSAGE value="load datatable editor - issue with edit function" />
-    <option name="LAST_COMMIT_MESSAGE" value="load datatable editor - issue with edit function" />
+    <MESSAGE value="load datatable editor with right js and css source" />
+    <option name="LAST_COMMIT_MESSAGE" value="load datatable editor with right js and css source" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -800,7 +805,7 @@
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="17" />
+      <option name="time" value="19" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1040,6 +1045,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
           <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1062,26 +1070,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="3863" lean-forward="false" selection-start-line="0" selection-start-column="3863" selection-end-line="0" selection-end-column="3863" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/evel/warehouse/controller/ColorController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="41" column="10" lean-forward="false" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/evel/warehouse/controller/ColorRestController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="20" column="45" lean-forward="false" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#883#884#0" expanded="true" />
-            <element signature="e#940#941#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1181,14 +1169,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/datatables.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="31" column="20" lean-forward="false" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/fragments/footer.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
@@ -1203,6 +1183,34 @@
           <caret line="0" column="61" lean-forward="true" selection-start-line="0" selection-start-column="61" selection-end-line="0" selection-end-column="61" />
           <folding>
             <marker date="1509727886895" expanded="true" signature="84:99" ph="Eventelektro Warehouse Mgmt" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/evel/warehouse/controller/ColorController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="41" column="10" lean-forward="false" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/datatables.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="36" column="58" lean-forward="false" selection-start-line="36" selection-start-column="58" selection-end-line="36" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/evel/warehouse/controller/ColorRestController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="35" column="8" lean-forward="true" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1170#1171#0" expanded="true" />
+            <element signature="e#1227#1228#0" expanded="true" />
           </folding>
         </state>
       </provider>
