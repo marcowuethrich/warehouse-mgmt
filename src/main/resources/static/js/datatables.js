@@ -1,15 +1,17 @@
+var colorTableEditor;
 $(document).ready(function () {
 var colorTable = $('table#colorTable');
-var colorTableEditor;
 
     //Color Editor
-    colorTableEditor = new $.fn.dataTable.Editor({
+    colorTableEditor = new $.fn.dataTable.Editor( {
+        ajax: "data/colors",
         table: colorTable,
+        idSrc:  'id',
         fields: [{
-            label: "Code",
+            label: "Code:",
             name: "code"
         }, {
-            label: "Bezeichnung",
+            label: "Bezeichnung:",
             name: "name"
         }]
     });
@@ -27,6 +29,7 @@ var colorTableEditor;
             dataSrc: 'data'
         },
         serverSide: true,
+        rowId: 'id',
         columns: [{
             data: null,
             defaultContent: '',
