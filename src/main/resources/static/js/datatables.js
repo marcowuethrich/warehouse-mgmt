@@ -11,7 +11,7 @@ $(document).ready(function () {
             },
             edit: {
                 type: 'PUT',
-                url: '/data/color/edit/_id_'
+                url: '/data/color/edit/id=_id_&code=_data[code]_'
             },
             remove: {
                 type: 'DELETE',
@@ -19,7 +19,7 @@ $(document).ready(function () {
             }
         },
         table: colorTable,
-        idSrc: 'id',
+        //idSrc: 'id',
         fields: [{
             label: "Code:",
             name: "code"
@@ -44,28 +44,26 @@ $(document).ready(function () {
             dataSrc: 'data'
         },
         serverSide: true,
-        rowId: 'id',
         columns: [{
             data: null,
             defaultContent: '',
             className: 'select-checkbox',
-            orderable: false
+            orderable: false,
+            searchable: false
         }, {
             data: 'code'
         }, {
             data: 'name'
         }],
-        order: [[1, "asc"]],
         select: {
             style: 'os',
             selector: 'td:first-child'
         },
+        order: [[2, "asc"]],
         buttons: [
             {extend: "create", editor: colorTableEditor},
             {extend: "edit", editor: colorTableEditor},
             {extend: "remove", editor: colorTableEditor}
         ]
     });
-
 });
-

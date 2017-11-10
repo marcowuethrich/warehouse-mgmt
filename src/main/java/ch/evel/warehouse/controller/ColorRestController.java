@@ -9,10 +9,7 @@ import org.springframework.data.jpa.datatables.mapping.DataTablesInput;
 import org.springframework.data.jpa.datatables.mapping.DataTablesOutput;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -33,6 +30,12 @@ public class ColorRestController {
 
     @RequestMapping(value = "/data/color/delete/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete(@PathVariable("id") UUID uuid) {
+        colorRepository.delete(uuid);
+        return new ResponseEntity<Color>(HttpStatus.NO_CONTENT);
+    }
+
+    @RequestMapping(value = "/data/color/edit/", method = RequestMethod.DELETE)
+    public ResponseEntity<?> edit(@RequestParam UUID uuid, @RequestParam String code, @RequestParam String name) {
         colorRepository.delete(uuid);
         return new ResponseEntity<Color>(HttpStatus.NO_CONTENT);
     }
