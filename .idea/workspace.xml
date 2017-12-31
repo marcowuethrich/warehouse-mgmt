@@ -1,49 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="228b08dc-3d6c-4806-be3a-bc79164a615c" name="Default" comment="Delete">
+    <list default="true" id="228b08dc-3d6c-4806-be3a-bc79164a615c" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/datatables.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/datatables.js" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/css/dataTables.editor.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/css/editor.bootstrap.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/css/editor.bootstrap.min.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/css/editor.bootstrap4.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/css/editor.bootstrap4.min.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/css/editor.dataTables.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/css/editor.dataTables.min.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/css/editor.foundation.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/css/editor.foundation.min.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/css/editor.jqueryui.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/css/editor.jqueryui.min.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/css/editor.semanticui.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/css/editor.semanticui.min.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/css/scss/bubble.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/css/scss/datatable.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/css/scss/datetime.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/css/scss/envelope.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/css/scss/fields.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/css/scss/inline.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/css/scss/lightbox.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/css/scss/main.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/css/scss/mixins.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/css/scss/processing.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/css/scss/upload.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/js/dataTables.editor.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/js/dataTables.editor.min.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/js/editor.bootstrap.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/js/editor.bootstrap.min.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/js/editor.bootstrap4.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/js/editor.bootstrap4.min.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/js/editor.foundation.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/js/editor.foundation.min.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/js/editor.jqueryui.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/js/editor.jqueryui.min.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/js/editor.semanticui.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor/datatables/pro/js/editor.semanticui.min.js" afterPath="" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/color.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/color.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/footer.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/footer.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/head.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/head.html" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -80,8 +41,8 @@
       <file leaf-file-name="footer.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/fragments/footer.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
-              <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+            <state relative-caret-position="609">
+              <caret line="21" column="51" lean-forward="false" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -91,7 +52,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/fragments/head.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="290">
-              <caret line="10" column="49" lean-forward="true" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
+              <caret line="10" column="49" lean-forward="false" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
               <folding>
                 <marker date="1514735508226" expanded="true" signature="84:99" ph="Eventelektro Warehouse Mgmt" />
               </folding>
@@ -99,23 +60,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="color.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="color.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/admin/color.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="577">
-              <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+            <state relative-caret-position="639">
+              <caret line="50" column="49" lean-forward="false" selection-start-line="50" selection-start-column="49" selection-end-line="50" selection-end-column="49" />
               <folding>
-                <element signature="e#1870#1877#1" expanded="true" />
+                <element signature="e#1967#1974#1" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="datatables.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="datatables.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/datatables.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="841">
-              <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+            <state relative-caret-position="1012">
+              <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -173,6 +134,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>modal</find>
+      <find>myModal</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -193,12 +155,12 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/java/ch/evel/warehouse/controller/ColorRestController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/static/vendor/jquery/jquery-1.12.4.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/js/datatables.js" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/fragments/head.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/bootstrap-modal.js" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/fragments/footer.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/admin/color.html" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/admin/color.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/datatables.js" />
       </list>
     </option>
   </component>
@@ -517,12 +479,20 @@
       <workItem from="1513370070265" duration="517000" />
       <workItem from="1513370816908" duration="3275000" />
       <workItem from="1514663795919" duration="11000" />
-      <workItem from="1514663839915" duration="6580000" />
+      <workItem from="1514663839915" duration="14509000" />
     </task>
+    <task id="LOCAL-00001" summary="Remove Datatable editor, change to datatable">
+      <created>1514737081137</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1514737081137</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10551000" />
+    <option name="totallyTimeSpent" value="18480000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="0" width="2949" height="2112" extended-state="4" />
@@ -566,6 +536,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Remove Datatable editor, change to datatable" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove Datatable editor, change to datatable" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -890,26 +864,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/evel/warehouse/controller/ColorController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/evel/warehouse/controller/ColorRestController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="522">
           <caret line="31" column="68" lean-forward="false" selection-start-line="31" selection-start-column="68" selection-end-line="31" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/datatables.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="841">
-          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -919,16 +877,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/fragments/head.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="10" column="49" lean-forward="true" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
-          <folding>
-            <marker date="1514735508226" expanded="true" signature="84:99" ph="Eventelektro Warehouse Mgmt" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -945,16 +893,8 @@
         <state relative-caret-position="203">
           <caret line="909" column="41" lean-forward="true" selection-start-line="909" selection-start-column="41" selection-end-line="909" selection-end-column="41" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/fragments/footer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -969,13 +909,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/evel/warehouse/controller/ColorController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/fragments/footer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="609">
+          <caret line="21" column="51" lean-forward="false" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/fragments/head.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="10" column="49" lean-forward="false" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
+          <folding>
+            <marker date="1514735508226" expanded="true" signature="84:99" ph="Eventelektro Warehouse Mgmt" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/admin/color.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="577">
-          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+        <state relative-caret-position="639">
+          <caret line="50" column="49" lean-forward="false" selection-start-line="50" selection-start-column="49" selection-end-line="50" selection-end-column="49" />
           <folding>
-            <element signature="e#1870#1877#1" expanded="true" />
+            <element signature="e#1967#1974#1" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/datatables.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1012">
+          <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
