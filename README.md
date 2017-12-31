@@ -16,5 +16,6 @@ https://blackrockdigital.github.io/startbootstrap-sb-admin-2/pages/index.html
 - DB Schema -> init/db_schema.sql
 
 
-## Non free libs
-- Datatable Editor -> https://editor.datatables.net
+## Other libs
+- Datatable -> https://datatables.net/
+- Bootstrap 3 -> https://getbootstrap.com/docs/3.3/
