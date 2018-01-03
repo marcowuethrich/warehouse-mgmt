@@ -5,6 +5,7 @@ import ch.evel.warehouse.db.dao.ColorRestRepository;
 import ch.evel.warehouse.db.model.Color;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.jpa.datatables.mapping.DataTablesInput;
 import org.springframework.data.jpa.datatables.mapping.DataTablesOutput;
 import org.springframework.http.HttpStatus;
@@ -28,15 +29,15 @@ public class ColorRestController {
         return colorRestRepository.findAll(input);
     }
 
-    @RequestMapping(value = "/data/color/delete/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> delete(@PathVariable("id") UUID uuid) {
-        colorRepository.delete(uuid);
-        return new ResponseEntity<Color>(HttpStatus.NO_CONTENT);
+    @RequestMapping(value = "/data/colors/delete/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> delete(@PathVariable("id") String uuid) {
+        try {
+            colorRepository.delete(UUID.fromString(uuid));
+            return new ResponseEntity<Color>(HttpStatus.OK);
+        }catch (EmptyResultDataAccessException exception){
+            // TODO: 1/3/18 Send Msg to User
+            return new ResponseEntity<Color>(HttpStatus.BAD_REQUEST);
+        }
     }
 
-    @RequestMapping(value = "/data/color/edit/", method = RequestMethod.DELETE)
-    public ResponseEntity<?> edit(@RequestParam UUID uuid, @RequestParam String code, @RequestParam String name) {
-        colorRepository.delete(uuid);
-        return new ResponseEntity<Color>(HttpStatus.NO_CONTENT);
-    }
 }

@@ -8,14 +8,18 @@ import ch.evel.warehouse.db.model.Color;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.UUID;
 
 @Controller
-@RequestMapping(path = "/admin/color")
+@RequestMapping(path = "/admin/colors")
 public class ColorController {
     private final ColorRepository colorRepository;
+    private static final String PAGE_TITLE = "Farbe";
 
     @Autowired
     private UserRepository userRepository;
@@ -30,9 +34,7 @@ public class ColorController {
 
     @GetMapping("/")
     public String getColor(ModelMap map) {
-        map.addAttribute("content", "color");
-        map.addAttribute("pageTitle", "Farben");
-        return "admin/home";
+        return loadPage(map, "colors");
     }
 
     @GetMapping("/{uuid}")
@@ -43,11 +45,32 @@ public class ColorController {
         return ((Article) color.getArticles().toArray()[3]).getColor();
     }
 
-    @GetMapping("/add")
-    public @ResponseBody
-    String addColor(@RequestParam String code, @RequestParam String name) {
-        Color color = new Color(code, name);
+    @RequestMapping(value = "/create", method=RequestMethod.GET)
+    public String edit(ModelMap map, Color color) {
+        return loadPage(map, "color");
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String addNewColor(@Valid Color color, BindingResult bindingResult, ModelMap map) {
+
+        if (bindingResult.hasErrors()) {
+            return loadPage(map, "color");
+
+        }else if (colorRepository.existsByCode(color.getCode())){
+            map.addAttribute("errorUniqueCode", "Code must be unique");
+            return loadPage(map, "color");
+        }else if (colorRepository.existsByName(color.getName())){
+            map.addAttribute("errorUniqueName", "Name must be unique");
+            return loadPage(map, "color");
+        }
         colorRepository.save(color);
-        return "Successful";
+        return loadPage(map, "colors");
+    }
+
+
+    private String loadPage(ModelMap map, String page){
+        map.addAttribute("content", page);
+        map.addAttribute("pageTitle", PAGE_TITLE);
+        return "admin/home";
     }
 }

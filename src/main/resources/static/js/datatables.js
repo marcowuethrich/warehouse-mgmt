@@ -1,7 +1,6 @@
 var colorTable = $('table#colorTable');
 
 $(document).ready(function () {
-    //Init
     colorTable = colorTable.DataTable({
         processing: true,
         serverSide: true,
@@ -24,35 +23,59 @@ $(document).ready(function () {
         "order": [[ 2, "asc" ]]
     });
 
-    //Select
-    $('#colorTable').find('tbody').on( 'click', 'tr', function () {
+    $('table#colorTable').find('tbody').on( 'click', 'tr', function () {
         $(this).toggleClass('selected');
     });
 
-
 });
 
-//Get Selected Items
-function loadSelectedItem() {
+function loadToRemoveColorItem() {
+    var array = loadSelectedColorItem();
+    var removeModal = $('#removeColorModal');
+    var emtpyText = $('p#emptyText');
+    var removeText = $('p#removeText');
+
+    //Clear Remove Item List
+    removeModal.find('ul').empty();
+
+    if(array.length < 1) {
+        emtpyText.removeClass('hidden');
+        removeText.addClass('hidden');
+        removeModal.find('button').last().addClass('hidden');
+    }else {
+        removeText.removeClass('hidden');
+        emtpyText.addClass('hidden');
+        removeModal.find('button').last().removeClass('hidden');
+
+        array.forEach(function (item) {
+            removeModal.find('ul').append('<li class="list-group-item">' + item.name + '</li>')
+        })
+    }
+}
+
+function removeSelectedColorItems() {
+    var array = loadSelectedColorItem();
+
+    array.forEach(function (item){
+        deleteColorItem(item.id)
+    })
+}
+
+function loadSelectedColorItem() {
     var array = [];
     colorTable.rows('.selected').every(function(rowIdx) {
         array.push(colorTable.row(rowIdx).data())
     });
+    return array;
+}
 
-    //Clear Remove Item List
-    $('#addColorModal').find('ul').empty();
-
-    if(array.length < 1) {
-        $('p#emptyText').removeClass('hidden');
-        $('p#removeText').addClass('hidden');
-        $('#addColorModal button').last().addClass('hidden');
-    }else {
-        $('p#removeText').removeClass('hidden');
-        $('p#emptyText').addClass('hidden');
-        $('#addColorModal button').last().removeClass('hidden');
-
-        array.forEach(function (item) {
-            $('#addColorModal').find('ul').append('<li class="list-group-item"><a>' + item.name + '</a></li>')
-        })
-    }
+function deleteColorItem(id) {
+    $.ajax({
+        url: '/data/colors/delete/'+ id,
+        type: 'DELETE',
+        success: function() {
+            return true;
+        }
+    });
+    location.reload();
 }
