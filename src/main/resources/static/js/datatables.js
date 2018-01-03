@@ -79,3 +79,29 @@ function deleteColorItem(id) {
     });
     location.reload();
 }
+
+function loadEditMode() {
+    var array = loadSelectedColorItem();
+    var alert = $('#alertD');
+    var msg = $('#alertDMessage');
+
+    if (array.length === 1){
+        var id = "";
+        array.forEach(function (item){id = item.id;});
+
+        $.ajax({
+            url: '/data/colors/edit/'+ id,
+            type: 'GET',
+            success: function() {
+                alert.addClass('hidden');
+                return true;
+            }
+        });
+    }else if(array.length === 0){
+        msg.text("Es wurde kein Element markiert");
+        alert.removeClass('hidden');
+    }else {
+        msg.text("Sie können nur ein Element auf einmal bearbeiten");
+        alert.removeClass('hidden');
+    }
+}
