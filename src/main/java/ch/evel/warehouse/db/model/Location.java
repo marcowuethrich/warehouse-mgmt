@@ -1,8 +1,13 @@
 package ch.evel.warehouse.db.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonView;
+import org.springframework.data.jpa.datatables.mapping.DataTablesOutput;
 
+import javax.jdo.annotations.Unique;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,7 +19,11 @@ public class Location extends EntityModel {
     @JsonBackReference
     private Set<Product> products = new HashSet<>(0);
 
-    @Column(unique = true)
+    @Column(length = 40, nullable = false, unique = true)
+    @JsonView(DataTablesOutput.View.class)
+    @Size(min = 2, max = 40)
+    @Unique
+    @NotNull(message = "Can't be Null")
     private String name;
 
     public Location() {

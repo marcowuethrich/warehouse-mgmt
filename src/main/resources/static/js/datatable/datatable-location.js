@@ -1,16 +1,15 @@
-var typgroupTable = $('table#typgroupTable');
+var locationTable = $('table#locationTable');
 
 $(document).ready(function () {
-    typgroupTable = typgroupTable.DataTable({
+    locationTable = locationTable.DataTable({
         processing: true,
         serverSide: true,
         ajax: {
-            url: "/data/typgroups",
+            url: "/data/locations",
             dataSrc: 'data'
         },
         columns: [
             {"data": "id"},
-            {"data": "code"},
             {"data": "name"}
         ],
         columnDefs: [
@@ -20,18 +19,18 @@ $(document).ready(function () {
                 "searchable": false
             }
         ],
-        "order": [[2, "asc"]]
+        "order": [[1, "asc"]]
     });
 
-    $('table#typgroupTable').find('tbody').on('click', 'tr', function () {
+    $('table#locationTable').find('tbody').on('click', 'tr', function () {
         $(this).toggleClass('selected');
     });
 
 });
 
-function loadToRemoveTypGroupItem() {
-    var array = loadSelectedTypGroupItem();
-    var removeModal = $('#removeTypGroupModal');
+function loadToRemoveLocationItem() {
+    var array = loadSelectedLocationItem();
+    var removeModal = $('#removeLocationModal');
 
     if (array.length < 1) {
         showDangerAlert("Es wurde kein Element markiert")
@@ -47,25 +46,25 @@ function loadToRemoveTypGroupItem() {
     }
 }
 
-function removeSelectedTypGroupItems() {
-    var array = loadSelectedTypGroupItem();
+function removeSelectedLocationItems() {
+    var array = loadSelectedLocationItem();
 
     array.forEach(function (item) {
-        deleteTypGroupItem(item.id)
+        deleteLocationItem(item.id)
     })
 }
 
-function loadSelectedTypGroupItem() {
+function loadSelectedLocationItem() {
     var array = [];
-    typgroupTable.rows('.selected').every(function (rowIdx) {
-        array.push(typgroupTable.row(rowIdx).data())
+    locationTable.rows('.selected').every(function (rowIdx) {
+        array.push(locationTable.row(rowIdx).data())
     });
     return array;
 }
 
-function deleteTypGroupItem(id) {
+function deleteLocationItem(id) {
     $.ajax({
-        url: '/admin/typgroups/delete/' + id,
+        url: '/admin/locations/delete/' + id,
         type: 'DELETE',
         success: function (response) {
             document.open();
@@ -75,8 +74,8 @@ function deleteTypGroupItem(id) {
     });
 }
 
-function loadTypGroupEditMode() {
-    var array = loadSelectedTypGroupItem();
+function loadLocationEditMode() {
+    var array = loadSelectedLocationItem();
 
     if (array.length === 1) {
         hidenDangerAlert();
@@ -86,7 +85,7 @@ function loadTypGroupEditMode() {
         });
 
         $.ajax({
-            url: '/admin/typgroups/edit/' + id,
+            url: '/admin/locations/edit/' + id,
             type: 'GET',
             success: function (response) {
                 document.open();

@@ -1,6 +1,5 @@
 package ch.evel.warehouse.controller;
 
-import ch.evel.warehouse.db.dao.CategoryRepository;
 import ch.evel.warehouse.db.dao.CategoryRestRepository;
 import ch.evel.warehouse.db.model.Category;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -16,9 +15,6 @@ public class CategoryRestController {
 
     @Autowired
     private CategoryRestRepository categoryRestRepository;
-
-    @Autowired
-    private CategoryRepository categoryRepository;
 
     @JsonView(DataTablesOutput.View.class)
     @RequestMapping(path = "/data/categories", method = RequestMethod.GET)

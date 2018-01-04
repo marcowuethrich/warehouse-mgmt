@@ -75,7 +75,7 @@ function deleteCategoryItem(id) {
     });
 }
 
-function loadEditMode() {
+function loadCategoryEditMode() {
     var array = loadSelectedCategoryItem();
 
     if (array.length === 1) {

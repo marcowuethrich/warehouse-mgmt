@@ -75,7 +75,7 @@ function deleteColorItem(id) {
     });
 }
 
-function loadEditMode() {
+function loadColorEditMode() {
     var array = loadSelectedColorItem();
 
     if (array.length === 1) {
