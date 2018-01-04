@@ -1,18 +1,13 @@
 package ch.evel.warehouse.controller;
 
 import ch.evel.warehouse.db.dao.ColorRepository;
-import ch.evel.warehouse.db.dao.UserRepository;
-import ch.evel.warehouse.db.dao.UserRolesRepository;
 import ch.evel.warehouse.db.model.Article;
 import ch.evel.warehouse.db.model.Color;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -22,7 +17,7 @@ import java.util.UUID;
 @RequestMapping(path = "/admin/colors")
 public class ColorController {
     private final ColorRepository colorRepository;
-    private static final String PAGE_TITLE = "Farbe";
+    private static final String PAGE_TITLE = "Farben";
     private Color editableColor;
 
     @Autowired
