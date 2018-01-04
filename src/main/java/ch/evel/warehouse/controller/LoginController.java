@@ -10,21 +10,21 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class LoginController {
-	
-	@Autowired
-	private UserService userService;
 
-	@RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
-	public ModelAndView login(){
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("login");
-		return modelAndView;
-	}
+    @Autowired
+    private UserService userService;
 
-	@RequestMapping(value="/admin/home", method = RequestMethod.GET)
-	public String home(ModelMap map){
-	    map.addAttribute("pageTitle","Dashboard");
-        map.addAttribute("content","dashboard");
+    @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
+    public ModelAndView login() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("login");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/admin/home", method = RequestMethod.GET)
+    public String home(ModelMap map) {
+        map.addAttribute("pageTitle", "Dashboard");
+        map.addAttribute("content", "dashboard");
         return "admin/home";
-	}
+    }
 }

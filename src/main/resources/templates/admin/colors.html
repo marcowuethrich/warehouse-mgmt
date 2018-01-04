@@ -7,10 +7,13 @@
             <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                 <div class="row">
                     <div class="col-sm-2">
-                        <form action="/admin/colors/create" >
-                            <button type="submit" class="btn btn-success btn-circle"><i class="fa fa-plus-circle"></i></button>
-                            <button type="button" class="btn btn-danger btn-circle" onclick="loadToRemoveColorItem()"><i class="fa fa-trash-o"></i></button>
-                            <button type="button" class="btn btn-danger btn-circle" onclick="loadEditMode()"><i class="fa fa-pencil"></i></button>
+                        <form action="/admin/colors/create">
+                            <button type="submit" class="btn btn-success btn-circle"><i class="fa fa-plus-circle"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger btn-circle" onclick="loadToRemoveColorItem()"><i
+                                    class="fa fa-trash-o"></i></button>
+                            <button type="button" class="btn btn-danger btn-circle" onclick="loadEditMode()"><i
+                                    class="fa fa-pencil"></i></button>
                         </form>
                     </div>
                 </div>
@@ -20,11 +23,11 @@
                                class="table table-striped table-bordered"
                                cellspacing="0" width="100%">
                             <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Code</th>
-                                    <th>Bezeichnung</th>
-                                </tr>
+                            <tr>
+                                <th>ID</th>
+                                <th>Code</th>
+                                <th>Bezeichnung</th>
+                            </tr>
                             </thead>
                         </table>
                     </div>
@@ -38,7 +41,8 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="removeColorModalLabel">Löschvorgang</h4>
                 </div>
                 <div class="modal-body">
@@ -52,7 +56,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Schliessen</button>
-                    <button type="button" class="btn btn-warning" data-dismiss="modal" onclick="removeSelectedColorItems()">Löschen</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal"
+                            onclick="removeSelectedColorItems()">Löschen
+                    </button>
                 </div>
             </div>
         </div>

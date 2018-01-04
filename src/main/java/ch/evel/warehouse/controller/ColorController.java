@@ -38,13 +38,13 @@ public class ColorController {
         return ((Article) color.getArticles().toArray()[3]).getColor();
     }
 
-    @RequestMapping(value = "/create", method=RequestMethod.GET)
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create(ModelMap map, Color color) {
         map.addAttribute("color", color);
         return loadPage(map, "color");
     }
 
-    @RequestMapping(value = "/edit/{id}", method=RequestMethod.GET)
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String edit(ModelMap map, @PathVariable String id) {
         editableColor = colorRepository.findOne(UUID.fromString(id));
         map.addAttribute("color", editableColor);
@@ -56,34 +56,34 @@ public class ColorController {
 
         if (bindingResult.hasErrors()) {
             return loadPage(map, "color");
-        }
-        else if (editableColor == null){
-           return createColor(map, color);
-        }else {
+        } else if (editableColor == null) {
+            return createColor(map, color);
+        } else {
             return editColor(map, editableColor, color);
         }
     }
 
-    private String editColor(ModelMap map, Color oldColor, Color newColor){
-         if (!oldColor.getCode().equals(newColor.getCode()) && colorRepository.existsByCode(newColor.getCode())){
+    private String editColor(ModelMap map, Color oldColor, Color newColor) {
+        if (!oldColor.getCode().equals(newColor.getCode()) && colorRepository.existsByCode(newColor.getCode())) {
             map.addAttribute("errorUniqueCode", "Code already exist");
             return loadPage(map, "color");
-        }else if (!oldColor.getName().equals(newColor.getName()) && colorRepository.existsByName(newColor.getName())){
+        } else if (!oldColor.getName().equals(newColor.getName()) && colorRepository.existsByName(newColor.getName())) {
             map.addAttribute("errorUniqueName", "Name already exist");
             return loadPage(map, "color");
         }
         oldColor.setCode(newColor.getCode());
         oldColor.setName(newColor.getName());
-            colorRepository.save(oldColor);
-            editableColor = null;
+        colorRepository.save(oldColor);
+        editableColor = null;
 
         return loadPage(map, "colors");
     }
-    private String createColor(ModelMap map, Color color){
-        if (colorRepository.existsByCode(color.getCode())){
+
+    private String createColor(ModelMap map, Color color) {
+        if (colorRepository.existsByCode(color.getCode())) {
             map.addAttribute("errorUniqueCode", "Code must be unique");
             return loadPage(map, "color");
-        }else if (colorRepository.existsByName(color.getName())){
+        } else if (colorRepository.existsByName(color.getName())) {
             map.addAttribute("errorUniqueName", "Name must be unique");
             return loadPage(map, "color");
         }
@@ -96,13 +96,13 @@ public class ColorController {
         try {
             colorRepository.delete(UUID.fromString(uuid));
             return loadPage(map, "colors");
-        }catch (EmptyResultDataAccessException exception){
+        } catch (EmptyResultDataAccessException exception) {
             // TODO: 1/3/18 Send Msg to User
             return loadPage(map, "colors");
         }
     }
 
-    private String loadPage(ModelMap map, String page){
+    private String loadPage(ModelMap map, String page) {
         map.addAttribute("content", page);
         map.addAttribute("pageTitle", PAGE_TITLE);
         return "admin/home";
