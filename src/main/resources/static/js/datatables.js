@@ -1,4 +1,6 @@
 var colorTable = $('table#colorTable');
+var alert = $('#alertD');
+var msg = $('#alertDMessage');
 
 $(document).ready(function () {
     colorTable = colorTable.DataTable({
@@ -32,21 +34,16 @@ $(document).ready(function () {
 function loadToRemoveColorItem() {
     var array = loadSelectedColorItem();
     var removeModal = $('#removeColorModal');
-    var emtpyText = $('p#emptyText');
-    var removeText = $('p#removeText');
-
-    //Clear Remove Item List
-    removeModal.find('ul').empty();
 
     if(array.length < 1) {
-        emtpyText.removeClass('hidden');
-        removeText.addClass('hidden');
-        removeModal.find('button').last().addClass('hidden');
+        msg.text("Es wurde kein Element markiert");
+        alert.removeClass('hidden');
     }else {
-        removeText.removeClass('hidden');
-        emtpyText.addClass('hidden');
-        removeModal.find('button').last().removeClass('hidden');
+        alert.addClass('hidden');
+        removeModal.modal();
 
+        //Clear Remove Item List
+        removeModal.find('ul').empty();
         array.forEach(function (item) {
             removeModal.find('ul').append('<li class="list-group-item">' + item.name + '</li>')
         })
@@ -83,8 +80,6 @@ function deleteColorItem(id) {
 
 function loadEditMode() {
     var array = loadSelectedColorItem();
-    var alert = $('#alertD');
-    var msg = $('#alertDMessage');
 
     if (array.length === 1){
         var id = "";

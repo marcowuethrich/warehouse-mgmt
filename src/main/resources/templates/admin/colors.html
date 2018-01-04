@@ -9,8 +9,7 @@
                     <div class="col-sm-2">
                         <form action="/admin/colors/create" >
                             <button type="submit" class="btn btn-success btn-circle"><i class="fa fa-plus-circle"></i></button>
-                            <button type="button" class="btn btn-danger btn-circle" onclick="loadToRemoveColorItem()"
-                                    data-toggle="modal" data-target="#removeColorModal"><i class="fa fa-trash-o"></i></button>
+                            <button type="button" class="btn btn-danger btn-circle" onclick="loadToRemoveColorItem()"><i class="fa fa-trash-o"></i></button>
                             <button type="button" class="btn btn-danger btn-circle" onclick="loadEditMode()"><i class="fa fa-pencil"></i></button>
                         </form>
                     </div>
@@ -46,7 +45,6 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <p id="removeText">Folgende Elemente werden gelöscht!</p>
-                            <p id="emptyText">Keine zu löschende Elemente gefunden!</p>
                             <ul class="list-group">
                             </ul>
                         </div>
