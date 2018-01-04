@@ -9,4 +9,5 @@ public interface ColorRepository extends CrudRepository<Color, UUID> {
 
     boolean existsByName(String name);
     boolean existsByCode(String code);
+
 }

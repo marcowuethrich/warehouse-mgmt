@@ -71,13 +71,14 @@ function loadSelectedColorItem() {
 
 function deleteColorItem(id) {
     $.ajax({
-        url: '/data/colors/delete/'+ id,
+        url: '/admin/colors/delete/'+ id,
         type: 'DELETE',
-        success: function() {
-            return true;
+        success: function(response) {
+            document.open();
+            document.write(response);
+            document.close();
         }
     });
-    location.reload();
 }
 
 function loadEditMode() {
@@ -90,11 +91,12 @@ function loadEditMode() {
         array.forEach(function (item){id = item.id;});
 
         $.ajax({
-            url: '/data/colors/edit/'+ id,
+            url: '/admin/colors/edit/'+ id,
             type: 'GET',
-            success: function() {
-                alert.addClass('hidden');
-                return true;
+            success: function(response) {
+                 document.open();
+                 document.write(response);
+                 document.close();
             }
         });
     }else if(array.length === 0){

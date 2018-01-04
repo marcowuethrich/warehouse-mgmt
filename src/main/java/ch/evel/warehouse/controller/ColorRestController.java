@@ -29,15 +29,4 @@ public class ColorRestController {
         return colorRestRepository.findAll(input);
     }
 
-    @RequestMapping(value = "/data/colors/delete/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> delete(@PathVariable("id") String uuid) {
-        try {
-            colorRepository.delete(UUID.fromString(uuid));
-            return new ResponseEntity<Color>(HttpStatus.OK);
-        }catch (EmptyResultDataAccessException exception){
-            // TODO: 1/3/18 Send Msg to User
-            return new ResponseEntity<Color>(HttpStatus.BAD_REQUEST);
-        }
-    }
-
 }
