@@ -5,8 +5,6 @@ import org.springframework.data.jpa.datatables.repository.DataTablesRepository;
 
 import java.util.UUID;
 
-public interface TypGroupRepository extends DataTablesRepository<TypGroup, UUID> {
-    boolean existsByName(String name);
+public interface TypGroupRestRepository extends DataTablesRepository<TypGroup, UUID> {
 
-    boolean existsByCode(String code);
 }
