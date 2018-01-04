@@ -26,12 +26,6 @@ public class ColorController {
     private Color editableColor;
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private UserRolesRepository userRolesRepository;
-
-    @Autowired
     public ColorController(ColorRepository colorRepository) {
         this.colorRepository = colorRepository;
     }

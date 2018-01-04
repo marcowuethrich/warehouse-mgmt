@@ -1,6 +1,4 @@
 var colorTable = $('table#colorTable');
-var alert = $('#alertD');
-var msg = $('#alertDMessage');
 
 $(document).ready(function () {
     colorTable = colorTable.DataTable({
@@ -36,10 +34,9 @@ function loadToRemoveColorItem() {
     var removeModal = $('#removeColorModal');
 
     if(array.length < 1) {
-        msg.text("Es wurde kein Element markiert");
-        alert.removeClass('hidden');
+        showDangerAlert("Es wurde kein Element markiert")
     }else {
-        alert.addClass('hidden');
+        hidenDangerAlert();
         removeModal.modal();
 
         //Clear Remove Item List
@@ -82,6 +79,7 @@ function loadEditMode() {
     var array = loadSelectedColorItem();
 
     if (array.length === 1){
+        hidenDangerAlert();
         var id = "";
         array.forEach(function (item){id = item.id;});
 
@@ -95,10 +93,8 @@ function loadEditMode() {
             }
         });
     }else if(array.length === 0){
-        msg.text("Es wurde kein Element markiert");
-        alert.removeClass('hidden');
+        showDangerAlert("Es wurde kein Element markiert")
     }else {
-        msg.text("Sie können nur ein Element auf einmal bearbeiten");
-        alert.removeClass('hidden');
+        showDangerAlert("Es kan nur ein Element auf einmal bearbeiten werden");
     }
 }
