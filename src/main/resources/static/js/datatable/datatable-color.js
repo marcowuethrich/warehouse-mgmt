@@ -97,6 +97,6 @@ function loadEditMode() {
     } else if (array.length === 0) {
         showDangerAlert("Es wurde kein Element markiert")
     } else {
-        showDangerAlert("Es kan nur ein Element auf einmal bearbeiten werden");
+        showDangerAlert("Es kann nur ein Element auf einmal bearbeiten werden");
     }
 }

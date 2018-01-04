@@ -26,7 +26,6 @@ public class Color extends EntityModel {
     @Size(min=2, max=50)
     @Unique
     @NotNull(message = "Can't be Null")
-
     private String name;
 
     @OneToMany(mappedBy = "color", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
