@@ -1,17 +1,17 @@
-var supplierTable = $('table#supplierTable');
+var lengthTable = $('table#lengthTable');
 
 $(document).ready(function () {
-    supplierTable = supplierTable.DataTable({
+    lengthTable = lengthTable.DataTable({
         processing: true,
         serverSide: true,
         ajax: {
-            url: "/data/suppliers",
+            url: "/data/lengths",
             dataSrc: 'data'
         },
         columns: [
             {"data": "id"},
             {"data": "code"},
-            {"data": "name"}
+            {"data": "size"}
         ],
         columnDefs: [
             {
@@ -20,18 +20,18 @@ $(document).ready(function () {
                 "searchable": false
             }
         ],
-        "order": [[1, "asc"]]
+        "order": [[2, "asc"]]
     });
 
-    $('table#supplierTable').find('tbody').on('click', 'tr', function () {
+    $('table#lengthTable').find('tbody').on('click', 'tr', function () {
         $(this).toggleClass('selected');
     });
 
 });
 
-function loadToRemoveSupplierItem() {
-    var array = loadSelectedSupplierItem();
-    var removeModal = $('#removeSupplierModal');
+function loadToRemoveLengthItem() {
+    var array = loadSelectedLengthItem();
+    var removeModal = $('#removeLengthModal');
 
     if (array.length < 1) {
         showDangerAlert("Es wurde kein Element markiert")
@@ -42,30 +42,30 @@ function loadToRemoveSupplierItem() {
         //Clear Remove Item List
         removeModal.find('ul').empty();
         array.forEach(function (item) {
-            removeModal.find('ul').append('<li class="list-group-item">' + item.name + '</li>')
+            removeModal.find('ul').append('<li class="list-group-item">' + item.size + '</li>')
         })
     }
 }
 
-function removeSelectedSupplierItems() {
-    var array = loadSelectedSupplierItem();
+function removeSelectedLengthItems() {
+    var array = loadSelectedLengthItem();
 
     array.forEach(function (item) {
-        deleteSupplierItem(item.id)
+        deleteLengthItem(item.id)
     })
 }
 
-function loadSelectedSupplierItem() {
+function loadSelectedLengthItem() {
     var array = [];
-    supplierTable.rows('.selected').every(function (rowIdx) {
-        array.push(supplierTable.row(rowIdx).data())
+    lengthTable.rows('.selected').every(function (rowIdx) {
+        array.push(lengthTable.row(rowIdx).data())
     });
     return array;
 }
 
-function deleteSupplierItem(id) {
+function deleteLengthItem(id) {
     $.ajax({
-        url: '/admin/suppliers/delete/' + id,
+        url: '/admin/lengths/delete/' + id,
         type: 'DELETE',
         success: function (response) {
             document.open();
@@ -75,8 +75,8 @@ function deleteSupplierItem(id) {
     });
 }
 
-function loadSupplierEditMode() {
-    var array = loadSelectedSupplierItem();
+function loadLengthEditMode() {
+    var array = loadSelectedLengthItem();
 
     if (array.length === 1) {
         hidenDangerAlert();
@@ -86,7 +86,7 @@ function loadSupplierEditMode() {
         });
 
         $.ajax({
-            url: '/admin/suppliers/edit/' + id,
+            url: '/admin/lengths/edit/' + id,
             type: 'GET',
             success: function (response) {
                 document.open();

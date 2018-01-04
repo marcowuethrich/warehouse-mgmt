@@ -1,0 +1,40 @@
+<div xmlns:th="http://www.thymeleaf.org" class="col-lg-12" th:fragment="length">
+    <div class="panel panel-default">
+        <div class="panel-heading" th:text="${pageTitle}"></div>
+        <div class="panel-body">
+            <form action="#" th:action="@{create}" th:object="${length}" method="post" class="form-horizontal"
+                  role="form">
+                <div class="form-group">
+                    <label for="code" class="col-sm-3 control-label">Code</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="code" placeholder="Code" class="form-control" th:field="*{code}"/>
+                        <span style="color: red; ">
+                            <td th:if="${#fields.hasErrors('code')}" th:errors="*{code}">Title error message</td>
+                            <td th:text="${errorUniqueCode}"></td>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="size" class="col-sm-3 control-label">Grüsse</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="size" placeholder="Grösse" class="form-control" th:field="*{size}"/>
+                        <span style="color: red; ">
+                            <td th:if="${#fields.hasErrors('size')}" th:errors="*{size}">Title error message</td>
+                            <td th:text="${errorUniqueSize}"></td>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <button type="submit" class="btn btn-primary btn-block">Speichern</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <a href="/admin/lengths/" class="btn btn-default btn-block">Zurück</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

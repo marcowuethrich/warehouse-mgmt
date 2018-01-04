@@ -23,7 +23,7 @@ public class Supplier extends EntityModel {
 
     @Column(length = 40, nullable = false, unique = true)
     @JsonView(DataTablesOutput.View.class)
-    @Size(min = 2, max = 50)
+    @Size(min = 2, max = 40)
     @Unique
     @NotNull(message = "Can't be Null")
     private String name;

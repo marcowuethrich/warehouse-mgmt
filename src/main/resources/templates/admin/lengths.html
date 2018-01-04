@@ -1,32 +1,30 @@
-<div xmlns:th="http://www.thymeleaf.org" class="col-lg-12" th:fragment="suppliers">
+<div xmlns:th="http://www.thymeleaf.org" class="col-lg-12" th:fragment="lengths">
     <div class="panel panel-default">
-        <div class="panel-heading" th:text="${pageTitle}">
-        </div>
+        <div class="panel-heading" th:text="${pageTitle}"></div>
         <div class="panel-body">
             <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                 <div class="row">
                     <div class="col-sm-2">
-                        <form action="/admin/suppliers/create">
+                        <form action="/admin/lengths/create">
                             <button type="submit" class="btn btn-success btn-circle"><i class="fa fa-plus-circle"></i>
                             </button>
-                            <button type="button" class="btn btn-danger btn-circle"
-                                    onclick="loadToRemoveSupplierItem()"><i
-                                    class="fa fa-trash-o"></i></button>
-                            <button type="button" class="btn btn-danger btn-circle" onclick="loadSupplierEditMode()"><i
+                            <button type="button" class="btn btn-danger btn-circle" onclick="loadToRemoveLengthItem()">
+                                <i class="fa fa-trash-o"></i></button>
+                            <button type="button" class="btn btn-danger btn-circle" onclick="loadLengthEditMode()"><i
                                     class="fa fa-pencil"></i></button>
                         </form>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-8 col-sm-offset-2">
-                        <table id="supplierTable"
+                        <table id="lengthTable"
                                class="table table-striped table-bordered"
                                cellspacing="0" width="100%">
                             <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Code</th>
-                                <th>Bezeichnung</th>
+                                <th>Grösse</th>
                             </tr>
                             </thead>
                         </table>
@@ -37,14 +35,13 @@
     </div>
 
     <!-- Remove Items Modal -->
-    <div class="modal fade" id="removeSupplierModal" tabindex="-1" role="dialog"
-         aria-labelledby="removeSupplierModalLabel">
+    <div class="modal fade" id="removeLengthModal" tabindex="-1" role="dialog" aria-labelledby="removeLengthModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="removeSupplierModalLabel">Löschvorgang</h4>
+                    <h4 class="modal-title" id="removeLengthModalLabel">Löschvorgang</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -58,7 +55,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Schliessen</button>
                     <button type="button" class="btn btn-warning" data-dismiss="modal"
-                            onclick="removeSelectedSupplierItems()">Löschen
+                            onclick="removeSelectedLengthItems()">Löschen
                     </button>
                 </div>
             </div>

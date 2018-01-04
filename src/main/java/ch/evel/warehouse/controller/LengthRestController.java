@@ -1,7 +1,7 @@
 package ch.evel.warehouse.controller;
 
-import ch.evel.warehouse.db.dao.SupplierRestRepository;
-import ch.evel.warehouse.db.model.Supplier;
+import ch.evel.warehouse.db.dao.LengthRestRepository;
+import ch.evel.warehouse.db.model.Length;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.datatables.mapping.DataTablesInput;
@@ -11,15 +11,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class SupplierRestController {
+public class LengthRestController {
 
     @Autowired
-    private SupplierRestRepository supplierRestRepository;
+    private LengthRestRepository lengthRestRepository;
 
     @JsonView(DataTablesOutput.View.class)
-    @RequestMapping(path = "/data/suppliers", method = RequestMethod.GET)
-    public DataTablesOutput<Supplier> getSuppliers(DataTablesInput input) {
-        return supplierRestRepository.findAll(input);
+    @RequestMapping(path = "/data/lengths", method = RequestMethod.GET)
+    public DataTablesOutput<Length> getLengths(DataTablesInput input) {
+        return lengthRestRepository.findAll(input);
     }
-
 }
