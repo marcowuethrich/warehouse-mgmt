@@ -1,5 +1,6 @@
 package ch.evel.warehouse.db.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.data.jpa.datatables.mapping.DataTablesOutput;
 
@@ -31,6 +32,7 @@ public class Category extends EntityModel {
     private Set<Article> articles;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonBackReference
     private Set<Groups> groups;
 
     public Category() {
@@ -78,9 +80,5 @@ public class Category extends EntityModel {
 
     public void setGroups(Set<Groups> groups) {
         this.groups = groups;
-    }
-
-    public String getIdByString() {
-        return id.toString();
     }
 }

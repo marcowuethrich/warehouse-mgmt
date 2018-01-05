@@ -6,4 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.UUID;
 
 public interface ArticleRepository extends CrudRepository<Article, UUID> {
+    boolean existsByName(String name);
+
+    boolean existsByCode(String code);
 }
