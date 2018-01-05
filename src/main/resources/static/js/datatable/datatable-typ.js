@@ -32,6 +32,8 @@ $(document).ready(function () {
         pageLength: 50,
         order: [[1, "asc"]]
     });
+    // function (data, type, row, meta) {
+    //     return row.typGroup.code + " " + row.typGroup.name;}},
 
     $('table#typTable').find('tbody').on('click', 'tr', function () {
         $(this).toggleClass('selected');
@@ -52,7 +54,7 @@ function loadToRemoveTypItem() {
         //Clear Remove Item List
         removeModal.find('ul').empty();
         array.forEach(function (item) {
-            removeModal.find('ul').append('<li class="list-group-item">' + item.name + '</li>')
+            removeModal.find('ul').append('<li class="list-group-item">' + item.typGroup.name + ' - ' + item.code + ' - ' + item.name + '</li>')
         })
     }
 }

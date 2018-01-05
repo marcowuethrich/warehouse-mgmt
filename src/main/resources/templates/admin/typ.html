@@ -2,8 +2,20 @@
     <div class="panel panel-default">
         <div class="panel-heading" th:text="${pageTitle}"></div>
         <div class="panel-body">
-            <form action="#" th:action="@{create}" th:object="${typ}" method="post" class="form-horizontal"
-                  role="form">
+            <form action="#" th:action="@{create}" th:object="${typ}" method="post" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="code" class="col-sm-3 control-label">Typ</label>
+                    <div class="col-sm-9">
+                        <label>
+                            <select id="typGroupId" class="form-control" th:field="*{typGroup}">
+                                <option th:each="item : ${typGroups}"
+                                        th:value="${item.id}"
+                                        th:text="${item.code}+' '+${item.name}"
+                                        th:if="${typ!=null}" th:selected="${typ.typGroup.id}"></option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="code" class="col-sm-3 control-label">Code</label>
                     <div class="col-sm-9">

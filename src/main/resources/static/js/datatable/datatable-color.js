@@ -43,7 +43,7 @@ function loadToRemoveColorItem() {
         //Clear Remove Item List
         removeModal.find('ul').empty();
         array.forEach(function (item) {
-            removeModal.find('ul').append('<li class="list-group-item">' + item.name + '</li>')
+            removeModal.find('ul').append('<li class="list-group-item">' + item.code + ' - ' + item.name + '</li>')
         })
     }
 }
