@@ -1,15 +1,16 @@
-var supplierTable = $('table#supplierTable');
+var typTable = $('table#typTable');
 
 $(document).ready(function () {
-    supplierTable = supplierTable.DataTable({
+    typTable = typTable.DataTable({
         processing: true,
         serverSide: true,
         ajax: {
-            url: "/data/suppliers",
+            url: "/data/typs",
             dataSrc: 'data'
         },
         columns: [
             {"data": "id"},
+            {"data": "typGroup.name"},
             {"data": "code"},
             {"data": "name"}
         ],
@@ -18,21 +19,29 @@ $(document).ready(function () {
                 "targets": [0],
                 "visible": false,
                 "searchable": false
+            },
+            {
+                targets: [1],
+                orderData: [1, 2]
+            },
+            {
+                targets: [2],
+                orderData: [2, 3]
             }
         ],
-        pageLength: 25,
+        pageLength: 50,
         order: [[1, "asc"]]
     });
 
-    $('table#supplierTable').find('tbody').on('click', 'tr', function () {
+    $('table#typTable').find('tbody').on('click', 'tr', function () {
         $(this).toggleClass('selected');
     });
 
 });
 
-function loadToRemoveSupplierItem() {
-    var array = loadSelectedSupplierItem();
-    var removeModal = $('#removeSupplierModal');
+function loadToRemoveTypItem() {
+    var array = loadSelectedTypItem();
+    var removeModal = $('#removeTypModal');
 
     if (array.length < 1) {
         showDangerAlert("Es wurde kein Element markiert")
@@ -48,25 +57,25 @@ function loadToRemoveSupplierItem() {
     }
 }
 
-function removeSelectedSupplierItems() {
-    var array = loadSelectedSupplierItem();
+function removeSelectedTypItems() {
+    var array = loadSelectedTypItem();
 
     array.forEach(function (item) {
-        deleteSupplierItem(item.id)
+        deleteTypItem(item.id)
     })
 }
 
-function loadSelectedSupplierItem() {
+function loadSelectedTypItem() {
     var array = [];
-    supplierTable.rows('.selected').every(function (rowIdx) {
-        array.push(supplierTable.row(rowIdx).data())
+    typTable.rows('.selected').every(function (rowIdx) {
+        array.push(typTable.row(rowIdx).data())
     });
     return array;
 }
 
-function deleteSupplierItem(id) {
+function deleteTypItem(id) {
     $.ajax({
-        url: '/admin/suppliers/delete/' + id,
+        url: '/admin/typs/delete/' + id,
         type: 'DELETE',
         success: function (response) {
             document.open();
@@ -76,8 +85,8 @@ function deleteSupplierItem(id) {
     });
 }
 
-function loadSupplierEditMode() {
-    var array = loadSelectedSupplierItem();
+function loadTypEditMode() {
+    var array = loadSelectedTypItem();
 
     if (array.length === 1) {
         hidenDangerAlert();
@@ -87,7 +96,7 @@ function loadSupplierEditMode() {
         });
 
         $.ajax({
-            url: '/admin/suppliers/edit/' + id,
+            url: '/admin/typs/edit/' + id,
             type: 'GET',
             success: function (response) {
                 document.open();

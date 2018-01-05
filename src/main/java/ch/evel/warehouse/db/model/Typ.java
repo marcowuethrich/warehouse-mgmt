@@ -1,21 +1,36 @@
 package ch.evel.warehouse.db.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonView;
+import org.springframework.data.jpa.datatables.mapping.DataTablesOutput;
 
+import javax.jdo.annotations.Unique;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
 @Table(name = "db_typ")
 public class Typ extends EntityModel {
 
+    @Column(length = 20, nullable = false, unique = true)
+    @JsonView(DataTablesOutput.View.class)
+    @Size(min = 2, max = 10)
+    @Unique
+    @NotNull(message = "Can't be Null")
     private String code;
 
     @Column(length = 40, nullable = false, unique = true)
+    @JsonView(DataTablesOutput.View.class)
+    @Size(min = 2, max = 40)
+    @Unique
+    @NotNull(message = "Can't be Null")
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "typGroup_id")
+    @JsonView(DataTablesOutput.View.class)
     private TypGroup typGroup;
 
     @OneToMany(mappedBy = "typ", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -43,7 +58,7 @@ public class Typ extends EntityModel {
         this.name = name;
     }
 
-    String getCode() {
+    public String getCode() {
         return code;
     }
 

@@ -20,7 +20,8 @@ $(document).ready(function () {
                 "searchable": false
             }
         ],
-        "order": [[1, "asc"]]
+        pageLength: 25,
+        order: [[1, "asc"]]
     });
 
     $('table#categoryTable').find('tbody').on('click', 'tr', function () {

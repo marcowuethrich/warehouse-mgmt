@@ -20,7 +20,8 @@ $(document).ready(function () {
                 "searchable": false
             }
         ],
-        "order": [[2, "asc"]]
+        pageLength: 25,
+        order: [[2, "asc"]]
     });
 
     $('table#typgroupTable').find('tbody').on('click', 'tr', function () {
