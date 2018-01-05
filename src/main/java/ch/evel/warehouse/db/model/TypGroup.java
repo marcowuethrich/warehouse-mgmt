@@ -31,6 +31,7 @@ public class TypGroup extends EntityModel {
     private String name;
 
     @OneToMany(mappedBy = "typGroup", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonBackReference
     private List<Typ> types = new LinkedList<>();
 
     @OneToMany(mappedBy = "typGroup", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

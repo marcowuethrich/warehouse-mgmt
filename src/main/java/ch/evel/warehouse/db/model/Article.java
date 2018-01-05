@@ -1,9 +1,15 @@
 package ch.evel.warehouse.db.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.joda.money.CurrencyUnit;
 import org.joda.money.Money;
+import org.springframework.data.jpa.datatables.mapping.DataTablesOutput;
 
+import javax.jdo.annotations.Unique;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Set;
 
@@ -11,52 +17,84 @@ import java.util.Set;
 @Table(name = "db_article")
 public class Article extends EntityModel {
 
-    @Column(length = 40)
+    @Column(length = 20, nullable = false, unique = true)
+    @JsonView(DataTablesOutput.View.class)
+    @Size(min = 2, max = 10)
+    @Unique
+    @NotNull(message = "Can't be Null")
     private String code;
 
-    @Column(length = 40)
+    @Column(length = 40, nullable = false, unique = true)
+    @JsonView(DataTablesOutput.View.class)
+    @Size(min = 2, max = 40)
+    @Unique
+    @NotNull(message = "Can't be Null")
     private String name;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonView(DataTablesOutput.View.class)
+    @NotNull(message = "Can't be Null")
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonView(DataTablesOutput.View.class)
+    @NotNull(message = "Can't be Null")
     @JoinColumn(name = "group_id")
     private Groups group;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonView(DataTablesOutput.View.class)
+    @NotNull(message = "Can't be Null")
     @JoinColumn(name = "typGroup_id")
     private TypGroup typGroup;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonView(DataTablesOutput.View.class)
+    @NotNull(message = "Can't be Null")
     @JoinColumn(name = "typ_id")
     private Typ typ;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonView(DataTablesOutput.View.class)
+    @NotNull(message = "Can't be Null")
     @JoinColumn(name = "color_id")
     private Color color;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonView(DataTablesOutput.View.class)
+    @NotNull(message = "Can't be Null")
     @JoinColumn(name = "length_id")
     private Length length;
 
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonBackReference
     private Set<Product> products;
 
-    @Column
+    @Column(nullable = false)
+    @Unique
+    @NotNull(message = "Can't be Null")
     private BigDecimal newPriceAmount;
 
-    @Column
+    @Column(length = 20, nullable = false, unique = true)
+    @Size(min = 2, max = 10)
+    @NotNull(message = "Can't be Null")
     private String newPriceCurrency = CurrencyUnit.CHF.toString();
 
-    @Column
+    @Column(nullable = false)
+    @Unique
+    @NotNull(message = "Can't be Null")
     private BigDecimal rentPriceAmount;
 
-    @Column
+    @Column(length = 20, nullable = false, unique = true)
+    @Size(min = 2, max = 10)
+    @NotNull(message = "Can't be Null")
     private String rentPriceCurrency = CurrencyUnit.CHF.toString();
 
+    @JsonView(DataTablesOutput.View.class)
     private transient Money newPrice;
+
+    @JsonView(DataTablesOutput.View.class)
     private transient Money rentPrice;
 
     public Article() {
@@ -117,22 +155,22 @@ public class Article extends EntityModel {
         code = generateCode();
     }
 
-    public Money getNewPrice() {
+    public String getNewPrice() {
         if (newPrice == null) {
             newPrice = Money.of(CurrencyUnit.of(newPriceCurrency), newPriceAmount);
         }
-        return newPrice;
+        return newPrice.toString();
     }
 
     public void setNewPrice(Money newPrice) {
         this.newPrice = newPrice;
     }
 
-    public Money getRentPrice() {
+    public String getRentPrice() {
         if (rentPrice == null) {
             rentPrice = Money.of(CurrencyUnit.of(rentPriceCurrency), rentPriceAmount);
         }
-        return rentPrice;
+        return rentPrice.toString();
     }
 
     public void setRentPrice(Money rentPrice) {
