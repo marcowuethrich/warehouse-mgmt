@@ -1,20 +1,33 @@
 package ch.evel.warehouse.db.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonView;
+import org.springframework.data.jpa.datatables.mapping.DataTablesOutput;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
 @Table(name = "db_groups")
 public class Groups extends EntityModel {
 
+    @Column(length = 20, nullable = false, unique = true)
+    @JsonView(DataTablesOutput.View.class)
+    @Size(min = 2, max = 10)
+    @NotNull(message = "Can't be Null")
     private String code;
 
-    @Column(length = 40, nullable = false)
+    @Column(length = 40, nullable = false, unique = true)
+    @JsonView(DataTablesOutput.View.class)
+    @Size(min = 2, max = 40)
+    @NotNull(message = "Can't be Null")
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonView(DataTablesOutput.View.class)
+    @NotNull(message = "Can't be Null")
     @JoinColumn(name = "category_id")
     private Category category;
 
@@ -43,7 +56,7 @@ public class Groups extends EntityModel {
         this.category = category;
     }
 
-    String getCode() {
+    public String getCode() {
         return code;
     }
 
@@ -59,6 +72,13 @@ public class Groups extends EntityModel {
         this.name = name;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
     public Set<Article> getArticles() {
         return articles;
@@ -66,17 +86,5 @@ public class Groups extends EntityModel {
 
     public void setArticles(Set<Article> articles) {
         this.articles = articles;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category article) {
-        this.category = article;
-    }
-
-    public String getIdByString() {
-        return id.toString();
     }
 }
