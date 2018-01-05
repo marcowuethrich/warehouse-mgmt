@@ -20,6 +20,7 @@ $(document).ready(function () {
                 "searchable": false
             }
         ],
+        pageLength: 25,
         "order": [[2, "asc"]]
     });
 
