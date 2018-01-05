@@ -1,5 +1,6 @@
 package ch.evel.warehouse.controller;
 
+import ch.evel.warehouse.db.dao.TypGroupRepository;
 import ch.evel.warehouse.db.dao.TypRepository;
 import ch.evel.warehouse.db.model.Article;
 import ch.evel.warehouse.db.model.Typ;
@@ -17,14 +18,16 @@ import java.util.UUID;
 @RequestMapping(path = "/admin/typs")
 public class TypController {
     private final TypRepository typRepository;
+    private final TypGroupRepository typGroupRepository;
     private static final String PAGE_TITLE = "Typen";
     private static final String PAGE_HOME = "typs";
     private static final String PAGE_EDIT = "typ";
     private Typ editableTyp;
 
     @Autowired
-    public TypController(TypRepository typRepository) {
+    public TypController(TypRepository typRepository, TypGroupRepository typGroupRepository) {
         this.typRepository = typRepository;
+        this.typGroupRepository = typGroupRepository;
     }
 
     @GetMapping("/")
@@ -42,6 +45,7 @@ public class TypController {
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create(ModelMap map, Typ typ) {
+        initDropdownList(map);
         return loadPage(map, PAGE_EDIT);
     }
 
@@ -49,6 +53,7 @@ public class TypController {
     public String edit(ModelMap map, @PathVariable String id) {
         editableTyp = typRepository.findOne(UUID.fromString(id));
         map.addAttribute("typ", editableTyp);
+        initDropdownList(map);
         return loadPage(map, PAGE_EDIT);
     }
 
@@ -56,6 +61,7 @@ public class TypController {
     public String createNewTypSubmit(@Valid Typ typ, BindingResult bindingResult, ModelMap map) {
 
         if (bindingResult.hasErrors()) {
+            initDropdownList(map);
             return loadPage(map, PAGE_EDIT);
         } else if (editableTyp == null) {
             return createTyp(map, typ);
@@ -65,15 +71,9 @@ public class TypController {
     }
 
     private String editTyp(ModelMap map, Typ oldTyp, Typ newTyp) {
-        if (!oldTyp.getCode().equals(newTyp.getCode()) && typRepository.existsByCode(newTyp.getCode())) {
-            map.addAttribute("errorUniqueCode", "Code already exist");
-            return loadPage(map, PAGE_EDIT);
-        } else if (!oldTyp.getName().equals(newTyp.getName()) && typRepository.existsByName(newTyp.getName())) {
-            map.addAttribute("errorUniqueName", "Name already exist");
-            return loadPage(map, PAGE_EDIT);
-        }
         oldTyp.setCode(newTyp.getCode());
         oldTyp.setName(newTyp.getName());
+        oldTyp.setTypGroup(newTyp.getTypGroup());
         typRepository.save(oldTyp);
         editableTyp = null;
 
@@ -81,13 +81,6 @@ public class TypController {
     }
 
     private String createTyp(ModelMap map, Typ typ) {
-        if (typRepository.existsByCode(typ.getCode())) {
-            map.addAttribute("errorUniqueCode", "Code must be unique");
-            return loadPage(map, PAGE_EDIT);
-        } else if (typRepository.existsByName(typ.getName())) {
-            map.addAttribute("errorUniqueName", "Name must be unique");
-            return loadPage(map, PAGE_EDIT);
-        }
         typRepository.save(typ);
         return loadPage(map, PAGE_HOME);
     }
@@ -107,5 +100,10 @@ public class TypController {
         map.addAttribute("content", page);
         map.addAttribute("pageTitle", PAGE_TITLE);
         return "admin/home";
+    }
+
+    private void initDropdownList(ModelMap map) {
+        //Todo sorting
+        map.addAttribute("typGroups", typGroupRepository.findAll());
     }
 }

@@ -7,6 +7,5 @@ import java.util.UUID;
 
 public interface TypRepository extends CrudRepository<Typ, UUID> {
     boolean existsByName(String name);
-
     boolean existsByCode(String code);
 }
