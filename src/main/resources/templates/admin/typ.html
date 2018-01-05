@@ -6,14 +6,23 @@
                 <div class="form-group">
                     <label for="code" class="col-sm-3 control-label">Typ</label>
                     <div class="col-sm-9">
-                        <label>
-                            <select id="typGroupId" class="form-control" th:field="*{typGroup}">
+                        <div th:if="${typ==null}"><!--Edit element-->
+                            <select id="typGroupId" class="form-control" th:field="*{typGroup}" title="TypGroup">
                                 <option th:each="item : ${typGroups}"
                                         th:value="${item.id}"
                                         th:text="${item.code}+' '+${item.name}"
-                                        th:if="${typ!=null}" th:selected="${typ.typGroup.id}"></option>
+                                        th:selected="${typ.typGroup.id}">
+                                </option>
                             </select>
-                        </label>
+                        </div>
+                        <div th:unless="${typ==null}"><!--Create new element-->
+                            <select id="typGroupId" class="form-control" th:field="${typ.typGroup}" title="TypGroup">
+                                <option th:each="item : ${typGroups}"
+                                        th:value="${item.id}"
+                                        th:text="${item.code}+' '+${item.name}">
+                                </option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -22,7 +31,6 @@
                         <input type="text" id="code" placeholder="Code" class="form-control" th:field="*{code}"/>
                         <span style="color: red; ">
                             <td th:if="${#fields.hasErrors('code')}" th:errors="*{code}">Title error message</td>
-                            <td th:text="${errorUniqueCode}"></td>
                         </span>
                     </div>
                 </div>
@@ -33,7 +41,6 @@
                                th:field="*{name}"/>
                         <span style="color: red; ">
                             <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Title error message</td>
-                            <td th:text="${errorUniqueName}"></td>
                         </span>
                     </div>
                 </div>
