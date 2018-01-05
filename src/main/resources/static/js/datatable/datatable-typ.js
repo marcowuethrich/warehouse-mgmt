@@ -32,7 +32,7 @@ $(document).ready(function () {
         pageLength: 50,
         order: [[1, "asc"]]
     });
-    // function (data, type, row, meta) {
+    // function (data, type, row, meta) { //TODO add code the column
     //     return row.typGroup.code + " " + row.typGroup.name;}},
 
     $('table#typTable').find('tbody').on('click', 'tr', function () {

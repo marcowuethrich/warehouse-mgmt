@@ -2,7 +2,6 @@ package ch.evel.warehouse.controller;
 
 import ch.evel.warehouse.db.dao.TypGroupRepository;
 import ch.evel.warehouse.db.dao.TypRepository;
-import ch.evel.warehouse.db.model.Article;
 import ch.evel.warehouse.db.model.Typ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -38,9 +37,7 @@ public class TypController {
     @GetMapping("/{uuid}")
     public @ResponseBody
     Typ getTyp(@PathVariable UUID uuid) {
-        Typ typ = typRepository.findOne(uuid);
-        System.out.println(typ.getArticles().size());
-        return ((Article) typ.getArticles().toArray()[3]).getTyp();
+        return typRepository.findOne(uuid);
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
@@ -59,7 +56,6 @@ public class TypController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String createNewTypSubmit(@Valid Typ typ, BindingResult bindingResult, ModelMap map) {
-
         if (bindingResult.hasErrors()) {
             initDropdownList(map);
             return loadPage(map, PAGE_EDIT);
@@ -103,7 +99,6 @@ public class TypController {
     }
 
     private void initDropdownList(ModelMap map) {
-        //Todo sorting
-        map.addAttribute("typGroups", typGroupRepository.findAll());
+        map.addAttribute("typGroups", typGroupRepository.findAllByOrderByCodeAsc());
     }
 }
