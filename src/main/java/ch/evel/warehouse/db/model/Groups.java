@@ -87,4 +87,5 @@ public class Groups extends EntityModel {
     public void setArticles(Set<Article> articles) {
         this.articles = articles;
     }
+
 }
