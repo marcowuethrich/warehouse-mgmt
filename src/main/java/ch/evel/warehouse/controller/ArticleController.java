@@ -2,6 +2,8 @@ package ch.evel.warehouse.controller;
 
 import ch.evel.warehouse.db.dao.*;
 import ch.evel.warehouse.db.model.Article;
+import ch.evel.warehouse.db.model.Groups;
+import ch.evel.warehouse.db.model.Typ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -60,7 +65,7 @@ public class ArticleController {
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String edit(ModelMap map, @PathVariable String id) {
         editableArticle = articleRepository.findOne(UUID.fromString(id));
-        map.addAttribute("articles", editableArticle);
+        map.addAttribute("article", editableArticle);
         initDropdownList(map);
         return loadPage(map, PAGE_EDIT);
     }
@@ -94,11 +99,11 @@ public class ArticleController {
         if (article.getCode() == null) {
             article.setCode(article.generateCode());
         }
-        if (!article.getCategory().getCode().equals(article.getGroup().getCode())) {
+        if (article.getGroup().getCategory().getId() != article.getCategory().getId()) {
             map.addAttribute("errorFalseGroup", "Die \"Gruppe\" ist nicht in der \"Kategorie\" vorhanden!!");
             initDropdownList(map);
             return loadPage(map, PAGE_EDIT);
-        } else if (!article.getTypGroup().getCode().equals(article.getTyp().getCode())) {
+        } else if (article.getTyp().getTypGroup().getId() != article.getTypGroup().getId()) {
             map.addAttribute("errorFalseTyp", "Der \"Typ\" ist nicht in der \"Typ Gruppe\" vorhanden!!");
             initDropdownList(map);
             return loadPage(map, PAGE_EDIT);
@@ -126,10 +131,24 @@ public class ArticleController {
 
     private void initDropdownList(ModelMap map) {
         map.addAttribute("categories", categoryRepository.findAllByOrderByCodeAsc());
-        map.addAttribute("groups", groupRepository.findAllByOrderByCodeAsc());
         map.addAttribute("typGroups", typGroupRepository.findAllByOrderByCodeAsc());
-        map.addAttribute("typs", typRepository.findAllByOrderByCodeAsc());
+        map.addAttribute("groups", getSortedGroups());
+        map.addAttribute("typs", getSortedTyps());
         map.addAttribute("lengths", lengthRepository.findAllByOrderByCodeAsc());
         map.addAttribute("colors", colorRepository.findAllByOrderByCodeAsc());
+    }
+
+    private List<Groups> getSortedGroups() {
+        List<Groups> groups = new ArrayList<>();
+        groupRepository.findAll().forEach(groups::add);
+        groups.sort(Comparator.comparing(groups1 -> groups1.getCategory().getCode()));
+        return groups;
+    }
+
+    private List<Typ> getSortedTyps() {
+        List<Typ> typs = new ArrayList<>();
+        typRepository.findAll().forEach(typs::add);
+        typs.sort(Comparator.comparing(typ -> typ.getTypGroup().getCode()));
+        return typs;
     }
 }
