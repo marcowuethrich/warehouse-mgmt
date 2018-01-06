@@ -1,0 +1,141 @@
+<div xmlns:th="http://www.thymeleaf.org" class="col-lg-12" th:fragment="product">
+    <div class="panel panel-default">
+        <div class="panel-heading" th:text="${pageTitle}"></div>
+        <div class="panel-body">
+            <form action="#" th:action="@{create}" th:object="${product}" method="post" class="form-horizontal"
+                  role="form">
+                <div class="form-group">
+                    <label for="categoryId" class="col-sm-3 control-label">Kategorie</label>
+                    <div class="col-sm-9">
+                        <select id="categoryId" class="form-control" th:field="${product.category}"
+                                title="Category">
+                            <option th:each="item : ${categories}"
+                                    th:value="${item.id}"
+                                    th:text="${item.code}+' '+${item.name}"
+                                    th:attrif="${item.id == editProduct.id} ? selected='selected'">A Carrier
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="groupId" class="col-sm-3 control-label">Gruppe</label>
+                    <div class="col-sm-9">
+                        <div th:unless="${product==null}"><!--Create new element-->
+                            <select id="groupId" class="form-control" th:field="${product.group}"
+                                    title="Gruppe">
+                                <option th:each="item : ${groups}"
+                                        th:value="${item.id}"
+                                        th:text="${item.category.code}+' - '+${item.name}">
+                                </option>
+                            </select>
+                        </div>
+                        <span style="color: red; ">
+                                <td th:text="${errorFalseGroup}"></td>
+                            </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="categoryId" class="col-sm-3 control-label">Typ Gruppe</label>
+                    <div class="col-sm-9">
+                        <div th:unless="${product==null}"><!--Create new element-->
+                            <select id="typGroupsId" class="form-control" th:field="${product.typGroup}"
+                                    title="Typ Gruppe">
+                                <option th:each="item : ${typGroups}"
+                                        th:value="${item.id}"
+                                        th:text="${item.code}+' '+${item.name}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="categoryId" class="col-sm-3 control-label">Typ</label>
+                    <div class="col-sm-9">
+                        <div th:unless="${product==null}"><!--Create new element-->
+                            <select id="typsId" class="form-control" th:field="${product.typ}"
+                                    title="Typ">
+                                <option th:each="item : ${typs}"
+                                        th:value="${item.id}"
+                                        th:text="${item.typGroup.code}+' - '+${item.name}">
+                                </option>
+                            </select>
+                        </div>
+                        <span style="color: red; ">
+                                <td th:text="${errorFalseTyp}"></td>
+                            </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="categoryId" class="col-sm-3 control-label">Länge</label>
+                    <div class="col-sm-9">
+                        <div th:unless="${product==null}"><!--Create new element-->
+                            <select id="lengthsId" class="form-control" th:field="${product.length}"
+                                    title="length">
+                                <option th:each="item : ${lengths}"
+                                        th:value="${item.id}"
+                                        th:text="${item.size}+' m'">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="categoryId" class="col-sm-3 control-label">Farbe</label>
+                    <div class="col-sm-9">
+                        <div th:unless="${product==null}"><!--Create new element-->
+                            <select id="colorsId" class="form-control" th:field="${product.color}"
+                                    title="Farbe">
+                                <option th:each="item : ${colors}"
+                                        th:value="${item.id}"
+                                        th:text="${item.name}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="newPriceAmount" class="col-sm-3 control-label">Neupreis</label>
+                    <div class="col-sm-9">
+                        <input type="number" id="newPriceAmount" placeholder="0.0" class="form-control"
+                               th:field="*{newPriceAmount}"/>
+                        <span style="color: red; ">
+                            <td th:if="${#fields.hasErrors('newPriceAmount')}" th:errors="*{newPriceAmount}">Title error message</td>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="rentPriceAmount" class="col-sm-3 control-label">Mietpreis</label>
+                    <div class="col-sm-9">
+                        <input type="number" id="rentPriceAmount" placeholder="0.0" class="form-control"
+                               th:field="*{rentPriceAmount}"/>
+                        <span style="color: red; ">
+                            <td th:if="${#fields.hasErrors('rentPriceAmount')}" th:errors="*{rentPriceAmount}">Title error message</td>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-3 control-label">Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="name" placeholder="Adapterkabel Td T13 CEE16/230 sz 10.0 m"
+                               class="form-control"
+                               th:field="*{name}"/>
+                        <span style="color: red; ">
+                            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Title error message</td>
+                            <td th:text="${errorUniqueName}"></td>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <button type="submit" class="btn btn-primary btn-block">Speichern</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <a href="/admin/products/" class="btn btn-default btn-block">Zurück</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
