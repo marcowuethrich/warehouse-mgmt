@@ -9,6 +9,5 @@ import java.util.UUID;
 public interface TypGroupRepository extends CrudRepository<TypGroup, UUID> {
     boolean existsByName(String name);
     boolean existsByCode(String code);
-
     List<TypGroup> findAllByOrderByCodeAsc();
 }
