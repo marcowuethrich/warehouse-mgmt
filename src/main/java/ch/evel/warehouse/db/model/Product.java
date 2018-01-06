@@ -30,7 +30,8 @@ public class Product extends EntityModel {
 
     @Column(length = 40, nullable = false, unique = true)
     @JsonView(DataTablesOutput.View.class)
-    private int amount;
+    @NotNull(message = "Can't be Null")
+    private int amount = 1;
 
     public Product() {
     }
