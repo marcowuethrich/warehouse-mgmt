@@ -53,7 +53,8 @@ function loadToRemoveArticleItem() {
         //Clear Remove Item List
         removeModal.find('ul').empty();
         array.forEach(function (item) {
-            removeModal.find('ul').append('<li class="list-group-item">' + item.category.name + ' - ' + item.code + ' - ' + item.name + '</li>')
+            removeModal.find('ul').append('<li class="list-group-item">' +
+                '' + item.category.name + ' - ' + item.code + ' - ' + item.name + '</li>')
         })
     }
 }

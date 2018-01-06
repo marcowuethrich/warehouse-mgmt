@@ -1,7 +1,6 @@
 package ch.evel.warehouse.controller;
 
-import ch.evel.warehouse.db.dao.ArticleRepository;
-import ch.evel.warehouse.db.dao.CategoryRepository;
+import ch.evel.warehouse.db.dao.*;
 import ch.evel.warehouse.db.model.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -18,15 +17,27 @@ import java.util.UUID;
 public class ArticleController {
     private final ArticleRepository articleRepository;
     private final CategoryRepository categoryRepository;
+    private final GroupRepository groupRepository;
+    private final TypGroupRepository typGroupRepository;
+    private final TypRepository typRepository;
+    private final LengthRepository lengthRepository;
+    private final ColorRepository colorRepository;
     private static final String PAGE_TITLE = "Artikel";
     private static final String PAGE_HOME = "articles";
     private static final String PAGE_EDIT = "article";
     private Article editableArticle;
 
     @Autowired
-    public ArticleController(ArticleRepository articleRepository, CategoryRepository categoryRepository) {
+    public ArticleController(ArticleRepository articleRepository, CategoryRepository categoryRepository,
+                             GroupRepository groupRepository, TypGroupRepository typGroupRepository,
+                             TypRepository typRepository, LengthRepository lengthRepository, ColorRepository colorRepository) {
         this.articleRepository = articleRepository;
         this.categoryRepository = categoryRepository;
+        this.groupRepository = groupRepository;
+        this.typGroupRepository = typGroupRepository;
+        this.typRepository = typRepository;
+        this.lengthRepository = lengthRepository;
+        this.colorRepository = colorRepository;
     }
 
     @GetMapping("/")
@@ -41,7 +52,7 @@ public class ArticleController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String create(ModelMap map, Article articles) {
+    public String create(ModelMap map, Article article) {
         initDropdownList(map);
         return loadPage(map, PAGE_EDIT);
     }
@@ -80,6 +91,18 @@ public class ArticleController {
     }
 
     private String createArticle(ModelMap map, Article article) {
+        if (article.getCode() == null) {
+            article.setCode(article.generateCode());
+        }
+        if (!article.getCategory().getCode().equals(article.getGroup().getCode())) {
+            map.addAttribute("errorFalseGroup", "Die \"Gruppe\" ist nicht in der \"Kategorie\" vorhanden!!");
+            initDropdownList(map);
+            return loadPage(map, PAGE_EDIT);
+        } else if (!article.getTypGroup().getCode().equals(article.getTyp().getCode())) {
+            map.addAttribute("errorFalseTyp", "Der \"Typ\" ist nicht in der \"Typ Gruppe\" vorhanden!!");
+            initDropdownList(map);
+            return loadPage(map, PAGE_EDIT);
+        }
         articleRepository.save(article);
         return loadPage(map, PAGE_HOME);
     }
@@ -103,5 +126,10 @@ public class ArticleController {
 
     private void initDropdownList(ModelMap map) {
         map.addAttribute("categories", categoryRepository.findAllByOrderByCodeAsc());
+        map.addAttribute("groups", groupRepository.findAllByOrderByCodeAsc());
+        map.addAttribute("typGroups", typGroupRepository.findAllByOrderByCodeAsc());
+        map.addAttribute("typs", typRepository.findAllByOrderByCodeAsc());
+        map.addAttribute("lengths", lengthRepository.findAllByOrderByCodeAsc());
+        map.addAttribute("colors", colorRepository.findAllByOrderByCodeAsc());
     }
 }

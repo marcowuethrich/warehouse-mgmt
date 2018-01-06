@@ -17,11 +17,9 @@ import java.util.Set;
 @Table(name = "db_article")
 public class Article extends EntityModel {
 
-    @Column(length = 20, nullable = false, unique = true)
+    @Column(length = 20, unique = true)
     @JsonView(DataTablesOutput.View.class)
-    @Size(min = 2, max = 10)
     @Unique
-    @NotNull(message = "Can't be Null")
     private String code;
 
     @Column(length = 40, nullable = false, unique = true)
@@ -72,22 +70,18 @@ public class Article extends EntityModel {
     private Set<Product> products;
 
     @Column(nullable = false)
-    @Unique
     @NotNull(message = "Can't be Null")
-    private BigDecimal newPriceAmount;
+    private BigDecimal newPriceAmount = new BigDecimal(0);
 
     @Column(length = 20, nullable = false, unique = true)
-    @Size(min = 2, max = 10)
     @NotNull(message = "Can't be Null")
     private String newPriceCurrency = CurrencyUnit.CHF.toString();
 
     @Column(nullable = false)
-    @Unique
     @NotNull(message = "Can't be Null")
-    private BigDecimal rentPriceAmount;
+    private BigDecimal rentPriceAmount = new BigDecimal(0);
 
     @Column(length = 20, nullable = false, unique = true)
-    @Size(min = 2, max = 10)
     @NotNull(message = "Can't be Null")
     private String rentPriceCurrency = CurrencyUnit.CHF.toString();
 
@@ -132,7 +126,7 @@ public class Article extends EntityModel {
         this.rentPriceCurrency = CurrencyUnit.CHF.toString();
     }
 
-    String generateCode() {
+    public String generateCode() {
         String category = this.category == null ? "_" : this.category.getCode();
         String group = this.group == null ? "-" : this.group.getCode();
         String typGroup = this.typGroup == null ? "-" : this.typGroup.getCode();
@@ -151,9 +145,6 @@ public class Article extends EntityModel {
         return group + " " + type + " " + col + " " + size + customName;
     }
 
-    public void generateAndSetCode() {
-        code = generateCode();
-    }
 
     public String getNewPrice() {
         if (newPrice == null) {
@@ -181,48 +172,6 @@ public class Article extends EntityModel {
         return rentPrice.multipliedBy(amount);
     }
 
-    public String getColorCode(String size) {
-        switch (size) {
-            case "1.0":
-            case "2.0":
-                return "Violett";
-            case "3.0":
-            case "4.0":
-                return "Braun";
-            case "5.0":
-                return "Grün";
-            case "10.0":
-                return "Rot";
-            case "15.0":
-                return "Grau";
-            case "20.0":
-                return "Blau";
-            case "25.0":
-                return "Gelb";
-            case "30.0":
-                return "Blau & Rot";
-            case "35.0":
-                return "Blau & Grau";
-            case "40.0":
-                return "Blau & Blau";
-            case "45.0":
-                return "Blau & Gelb";
-            case "50.0":
-                return "Weiss";
-            case "60.0":
-                return "Orange";
-            case "70.0":
-                return "Weiss & Blau";
-            case "80.0":
-                return "Orange & Blau";
-            case "90.0":
-                return "Orange & Blau & Rot";
-            case "100.0":
-                return "Rot & Rot";
-        }
-        return "-";
-    }
-
     public String getIdByString() {
         return id.toString();
     }
@@ -232,7 +181,7 @@ public class Article extends EntityModel {
     }
 
     public void setCode(String code) {
-        this.code = code;
+        this.code = generateCode();
     }
 
     public String getName() {
