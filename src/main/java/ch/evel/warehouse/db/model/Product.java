@@ -1,24 +1,35 @@
 package ch.evel.warehouse.db.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import org.springframework.data.jpa.datatables.mapping.DataTablesOutput;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "db_product")
 public class Product extends EntityModel {
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonView(DataTablesOutput.View.class)
+    @NotNull(message = "Can't be Null")
     @JoinColumn(name = "supplier_id")
     private Supplier supplier;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonView(DataTablesOutput.View.class)
+    @NotNull(message = "Can't be Null")
     @JoinColumn(name = "article_id")
     private Article article;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonView(DataTablesOutput.View.class)
+    @NotNull(message = "Can't be Null")
     @JoinColumn(name = "location_id")
     private Location location;
 
-    @Column()
+    @Column(length = 40, nullable = false, unique = true)
+    @JsonView(DataTablesOutput.View.class)
     private int amount;
 
     public Product() {
@@ -48,7 +59,7 @@ public class Product extends EntityModel {
         return this.supplier.getCode() + "-" + this.article.getCode();
     }
 
-    int getAmount() {
+    public int getAmount() {
         return amount;
     }
 
