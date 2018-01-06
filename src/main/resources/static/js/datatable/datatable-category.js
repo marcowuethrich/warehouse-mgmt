@@ -4,6 +4,8 @@ $(document).ready(function () {
     categoryTable = categoryTable.DataTable({
         processing: true,
         serverSide: true,
+        responsive: true,
+        scrollX: true,
         ajax: {
             url: "/data/categories",
             dataSrc: 'data'

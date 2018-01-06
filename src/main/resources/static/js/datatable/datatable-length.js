@@ -4,6 +4,8 @@ $(document).ready(function () {
     lengthTable = lengthTable.DataTable({
         processing: true,
         serverSide: true,
+        responsive: true,
+        scrollX: true,
         ajax: {
             url: "/data/lengths",
             dataSrc: 'data'

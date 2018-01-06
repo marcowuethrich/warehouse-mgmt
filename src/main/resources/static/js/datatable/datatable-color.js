@@ -4,6 +4,8 @@ $(document).ready(function () {
     colorTable = colorTable.DataTable({
         processing: true,
         serverSide: true,
+        responsive: true,
+        scrollX: true,
         ajax: {
             url: "/data/colors",
             dataSrc: 'data'

@@ -4,6 +4,8 @@ $(document).ready(function () {
     supplierTable = supplierTable.DataTable({
         processing: true,
         serverSide: true,
+        responsive: true,
+        scrollX: true,
         ajax: {
             url: "/data/suppliers",
             dataSrc: 'data'

@@ -4,6 +4,8 @@ $(document).ready(function () {
     typTable = typTable.DataTable({
         processing: true,
         serverSide: true,
+        responsive: true,
+        scrollX: true,
         ajax: {
             url: "/data/typs",
             dataSrc: 'data'

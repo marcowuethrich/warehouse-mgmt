@@ -4,6 +4,8 @@ $(document).ready(function () {
     productTable = productTable.DataTable({
         processing: true,
         serverSide: true,
+        responsive: true,
+        scrollX: true,
         ajax: {
             url: "/data/products",
             dataSrc: 'data'

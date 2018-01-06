@@ -4,6 +4,8 @@ $(document).ready(function () {
     locationTable = locationTable.DataTable({
         processing: true,
         serverSide: true,
+        responsive: true,
+        scrollX: true,
         ajax: {
             url: "/data/locations",
             dataSrc: 'data'
