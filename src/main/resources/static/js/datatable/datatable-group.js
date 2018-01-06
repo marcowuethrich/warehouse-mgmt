@@ -4,6 +4,8 @@ $(document).ready(function () {
     groupTable = groupTable.DataTable({
         processing: true,
         serverSide: true,
+        responsive: true,
+        scrollX: true,
         ajax: {
             url: "/data/groups",
             dataSrc: 'data'

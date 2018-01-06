@@ -4,6 +4,8 @@ $(document).ready(function () {
     typgroupTable = typgroupTable.DataTable({
         processing: true,
         serverSide: true,
+        responsive: true,
+        scrollX: true,
         ajax: {
             url: "/data/typgroups",
             dataSrc: 'data'

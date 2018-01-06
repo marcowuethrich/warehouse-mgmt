@@ -4,6 +4,8 @@ $(document).ready(function () {
     articleTable = articleTable.DataTable({
         processing: true,
         serverSide: true,
+        responsive: true,
+        scrollX: true,
         ajax: {
             url: "/data/articles",
             dataSrc: 'data'
