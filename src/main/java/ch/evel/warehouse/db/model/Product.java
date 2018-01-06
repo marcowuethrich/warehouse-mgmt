@@ -45,7 +45,7 @@ public class Product extends EntityModel {
     }
 
     public String getCode() {
-        return this.supplier.getCode() + "-" + this.article.generateCode();
+        return this.supplier.getCode() + "-" + this.article.getCode();
     }
 
     int getAmount() {

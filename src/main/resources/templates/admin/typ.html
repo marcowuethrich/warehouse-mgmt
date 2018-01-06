@@ -4,7 +4,7 @@
         <div class="panel-body">
             <form action="#" th:action="@{create}" th:object="${typ}" method="post" class="form-horizontal" role="form">
                 <div class="form-group">
-                    <label for="code" class="col-sm-3 control-label">Typ</label>
+                    <label for="typGroupId" class="col-sm-3 control-label">Typ</label>
                     <div class="col-sm-9">
                         <div th:if="${typ==null}"><!--Edit element-->
                             <select id="typGroupId" class="form-control" th:field="*{typGroup}" title="TypGroup">
