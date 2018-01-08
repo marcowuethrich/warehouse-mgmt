@@ -1,6 +1,6 @@
 package ch.evel.warehouse.controller;
 
-import ch.evel.warehouse.db.dao.ArticleRepository;
+import ch.evel.warehouse.db.dao.LocationRepository;
 import ch.evel.warehouse.db.dao.ProductRepository;
 import ch.evel.warehouse.db.dao.SupplierRepository;
 import ch.evel.warehouse.db.model.Product;
@@ -18,7 +18,7 @@ import java.util.UUID;
 @RequestMapping(path = "/admin/products")
 public class ProductController {
     private final ProductRepository productRepository;
-    private final ArticleRepository articleRepository;
+    private final LocationRepository locationRepository;
     private final SupplierRepository supplierRepository;
 
     private static final String PAGE_TITLE = "Produkte";
@@ -27,9 +27,9 @@ public class ProductController {
     private Product editableProduct;
 
     @Autowired
-    public ProductController(ProductRepository productRepository, ArticleRepository articleRepository, SupplierRepository supplierRepository) {
+    public ProductController(ProductRepository productRepository, LocationRepository locationRepository, SupplierRepository supplierRepository) {
         this.productRepository = productRepository;
-        this.articleRepository = articleRepository;
+        this.locationRepository = locationRepository;
         this.supplierRepository = supplierRepository;
     }
 
@@ -62,6 +62,10 @@ public class ProductController {
     public String createNewProductSubmit(@Valid Product product, BindingResult bindingResult, ModelMap map) {
         if (bindingResult.hasErrors()) {
             initDropdownList(map);
+
+            if (product.getArticle() == null) {
+                map.addAttribute("noArticleSelected", "Es wurde kein Artikel ausgewählt!!");
+            }
             return loadPage(map, PAGE_EDIT);
         } else if (editableProduct == null) {
             return createProduct(map, product);
@@ -81,18 +85,14 @@ public class ProductController {
     }
 
     private String createProduct(ModelMap map, Product product) {
-//        if (product.getCode() == null) {
-//            product.setCode(product.generateCode());
-//        }
-//        if (product.getGroup().getCategory().getId() != product.getCategory().getId()) {
-//            map.addAttribute("errorFalseGroup", "Die \"Gruppe\" ist nicht in der \"Kategorie\" vorhanden!!");
-//            initDropdownList(map);
-//            return loadPage(map, PAGE_EDIT);
-//        } else if (product.getTyp().getTypGroup().getId() != product.getTypGroup().getId()) {
-//            map.addAttribute("errorFalseTyp", "Der \"Typ\" ist nicht in der \"Typ Gruppe\" vorhanden!!");
-//            initDropdownList(map);
-//            return loadPage(map, PAGE_EDIT);
-//        }
+        if (productRepository.existsProductByArticle(product.getArticle()) &&
+                productRepository.existsProductByLocation(product.getLocation())) {
+            map.addAttribute("productAlreadyExist", "Ein Produkt mit der Bezeichung \""
+                    + product.getArticle().getName() + "\" und dem Lieferanten \"" + product.getSupplier().getName()
+                    + "\" ist bereits in der Datenbank vorhanden!!");
+            initDropdownList(map);
+            return loadPage(map, PAGE_EDIT);
+        }
         productRepository.save(product);
         return loadPage(map, PAGE_HOME);
     }
@@ -116,6 +116,7 @@ public class ProductController {
 
     private void initDropdownList(ModelMap map) {
         map.addAttribute("suppliers", supplierRepository.findAllByOrderByNameAsc());
+        map.addAttribute("locations", locationRepository.findAllByOrderByNameAsc());
     }
 
 }

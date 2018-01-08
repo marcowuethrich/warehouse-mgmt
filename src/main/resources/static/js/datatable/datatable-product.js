@@ -31,7 +31,7 @@ $(document).ready(function () {
                 "searchable": false
             },
             {
-                targets: [7, 8],
+                targets: [9, 10],
                 searchable: false
             }
         ],
@@ -59,7 +59,8 @@ function loadToRemoveProductItem() {
         removeModal.find('ul').empty();
         array.forEach(function (item) {
             removeModal.find('ul').append('<li class="list-group-item">' +
-                '' + item.category.name + ' - ' + item.code + ' - ' + item.name + '</li>')
+                item.article.category.name + ' - ' + item.article.code
+                + ' - ' + item.article.name + '</li>')
         })
     }
 }

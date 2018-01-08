@@ -3,19 +3,16 @@
         <div class="panel-heading" th:text="${pageTitle}"></div>
         <div class="panel-body">
             <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-                <div class="row">
-                    <div class="col-sm-2">
-                        <form action="/admin/products/create">
+                <form action="/admin/products/create">
+                    <div class="row">
                             <button type="submit" class="btn btn-success btn-circle"><i class="fa fa-plus-circle"></i>
                             </button>
                             <button type="button" class="btn btn-danger btn-circle" onclick="loadToRemoveProductItem()">
-                                <i
-                                        class="fa fa-trash-o"></i></button>
+                                <i class="fa fa-trash-o"></i></button>
                             <button type="button" class="btn btn-danger btn-circle" onclick="loadProductEditMode()"><i
                                     class="fa fa-pencil"></i></button>
-                        </form>
                     </div>
-                </div>
+                </form>
                 <br/>
                 <div class="row">
                     <div class="col-sm-12">
