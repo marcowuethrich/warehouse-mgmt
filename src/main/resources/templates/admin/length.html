@@ -17,7 +17,7 @@
                 <div class="form-group">
                     <label for="size" class="col-sm-3 control-label">Grüsse</label>
                     <div class="col-sm-9">
-                        <input type="text" id="size" placeholder="Grösse" class="form-control" th:field="*{size}"/>
+                        <input type="number" id="size" placeholder="Grösse" class="form-control" th:field="*{size}"/>
                         <span style="color: red; ">
                             <td th:if="${#fields.hasErrors('size')}" th:errors="*{size}">Title error message</td>
                             <td th:text="${errorUniqueSize}"></td>
