@@ -15,7 +15,7 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping(path = "/admin/groups")
-public class GroupController {
+public class GroupController extends PageController {
     private final GroupRepository groupRepository;
     private final CategoryRepository categoryRepository;
     private static final String PAGE_TITLE = "Gruppen";
@@ -31,7 +31,7 @@ public class GroupController {
 
     @GetMapping("/")
     public String get(ModelMap map) {
-        return loadPage(map, PAGE_HOME);
+        return loadPage(map, PAGE_HOME, PAGE_TITLE);
     }
 
     @GetMapping("/{uuid}")
@@ -43,7 +43,7 @@ public class GroupController {
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create(ModelMap map, Groups groups) {
         initDropdownList(map);
-        return loadPage(map, PAGE_EDIT);
+        return loadPage(map, PAGE_EDIT, PAGE_TITLE);
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
@@ -51,14 +51,14 @@ public class GroupController {
         editableGroup = groupRepository.findOne(UUID.fromString(id));
         map.addAttribute("groups", editableGroup);
         initDropdownList(map);
-        return loadPage(map, PAGE_EDIT);
+        return loadPage(map, PAGE_EDIT, PAGE_TITLE);
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String createNewGroupSubmit(@Valid Groups group, BindingResult bindingResult, ModelMap map) {
         if (bindingResult.hasErrors()) {
             initDropdownList(map);
-            return loadPage(map, PAGE_EDIT);
+            return loadPage(map, PAGE_EDIT, PAGE_TITLE);
         } else if (editableGroup == null) {
             return createGroup(map, group);
         } else {
@@ -73,29 +73,23 @@ public class GroupController {
         groupRepository.save(oldGroup);
         editableGroup = null;
 
-        return loadPage(map, PAGE_HOME);
+        return loadPage(map, PAGE_HOME, PAGE_TITLE);
     }
 
     private String createGroup(ModelMap map, Groups group) {
         groupRepository.save(group);
-        return loadPage(map, PAGE_HOME);
+        return loadPage(map, PAGE_HOME, PAGE_TITLE);
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public String delete(ModelMap map, @PathVariable("id") String uuid) {
         try {
             groupRepository.delete(UUID.fromString(uuid));
-            return loadPage(map, PAGE_HOME);
+            return loadPage(map, PAGE_HOME, PAGE_TITLE);
         } catch (EmptyResultDataAccessException exception) {
             // TODO: 1/3/18 Send Msg to User
-            return loadPage(map, PAGE_HOME);
+            return loadPage(map, PAGE_HOME, PAGE_TITLE);
         }
-    }
-
-    private String loadPage(ModelMap map, String page) {
-        map.addAttribute("content", page);
-        map.addAttribute("pageTitle", PAGE_TITLE);
-        return "admin/home";
     }
 
     private void initDropdownList(ModelMap map) {

@@ -15,7 +15,7 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping(path = "/admin/typs")
-public class TypController {
+public class TypController extends PageController {
     private final TypRepository typRepository;
     private final TypGroupRepository typGroupRepository;
     private static final String PAGE_TITLE = "Typen";
@@ -31,7 +31,7 @@ public class TypController {
 
     @GetMapping("/")
     public String get(ModelMap map) {
-        return loadPage(map, PAGE_HOME);
+        return loadPage(map, PAGE_HOME, PAGE_TITLE);
     }
 
     @GetMapping("/{uuid}")
@@ -43,7 +43,7 @@ public class TypController {
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create(ModelMap map, Typ typ) {
         initDropdownList(map);
-        return loadPage(map, PAGE_EDIT);
+        return loadPage(map, PAGE_EDIT, PAGE_TITLE);
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
@@ -51,14 +51,14 @@ public class TypController {
         editableTyp = typRepository.findOne(UUID.fromString(id));
         map.addAttribute("typ", editableTyp);
         initDropdownList(map);
-        return loadPage(map, PAGE_EDIT);
+        return loadPage(map, PAGE_EDIT, PAGE_TITLE);
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String createNewTypSubmit(@Valid Typ typ, BindingResult bindingResult, ModelMap map) {
         if (bindingResult.hasErrors()) {
             initDropdownList(map);
-            return loadPage(map, PAGE_EDIT);
+            return loadPage(map, PAGE_EDIT, PAGE_TITLE);
         } else if (editableTyp == null) {
             return createTyp(map, typ);
         } else {
@@ -73,29 +73,23 @@ public class TypController {
         typRepository.save(oldTyp);
         editableTyp = null;
 
-        return loadPage(map, PAGE_HOME);
+        return loadPage(map, PAGE_HOME, PAGE_TITLE);
     }
 
     private String createTyp(ModelMap map, Typ typ) {
         typRepository.save(typ);
-        return loadPage(map, PAGE_HOME);
+        return loadPage(map, PAGE_HOME, PAGE_TITLE);
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public String delete(ModelMap map, @PathVariable("id") String uuid) {
         try {
             typRepository.delete(UUID.fromString(uuid));
-            return loadPage(map, PAGE_HOME);
+            return loadPage(map, PAGE_HOME, PAGE_TITLE);
         } catch (EmptyResultDataAccessException exception) {
             // TODO: 1/3/18 Send Msg to User
-            return loadPage(map, PAGE_HOME);
+            return loadPage(map, PAGE_HOME, PAGE_TITLE);
         }
-    }
-
-    private String loadPage(ModelMap map, String page) {
-        map.addAttribute("content", page);
-        map.addAttribute("pageTitle", PAGE_TITLE);
-        return "admin/home";
     }
 
     private void initDropdownList(ModelMap map) {

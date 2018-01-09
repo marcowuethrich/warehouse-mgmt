@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class LoginController {
+public class LoginController extends PageController {
+
+    private static final String PAGE_TITLE = "Dashboard";
+    private static final String PAGE_HOME = "dashboard";
 
     @Autowired
     private UserService userService;
@@ -23,8 +26,6 @@ public class LoginController {
 
     @RequestMapping(value = "/admin/home", method = RequestMethod.GET)
     public String home(ModelMap map) {
-        map.addAttribute("pageTitle", "Dashboard");
-        map.addAttribute("content", "dashboard");
-        return "admin/home";
+        return loadPage(map, PAGE_HOME, PAGE_TITLE);
     }
 }

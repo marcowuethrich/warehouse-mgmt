@@ -16,7 +16,7 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping(path = "/admin/products")
-public class ProductController {
+public class ProductController extends PageController {
     private final ProductRepository productRepository;
     private final LocationRepository locationRepository;
     private final SupplierRepository supplierRepository;
@@ -35,7 +35,7 @@ public class ProductController {
 
     @GetMapping("/")
     public String get(ModelMap map) {
-        return loadPage(map, PAGE_HOME);
+        return loadPage(map, PAGE_HOME, PAGE_TITLE);
     }
 
     @GetMapping("/{uuid}")
@@ -47,7 +47,7 @@ public class ProductController {
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create(ModelMap map, Product product) {
         initDropdownList(map);
-        return loadPage(map, PAGE_EDIT);
+        return loadPage(map, PAGE_EDIT, PAGE_TITLE);
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
@@ -55,7 +55,7 @@ public class ProductController {
         editableProduct = productRepository.findOne(UUID.fromString(id));
         map.addAttribute("product", editableProduct);
         initDropdownList(map);
-        return loadPage(map, PAGE_EDIT);
+        return loadPage(map, PAGE_EDIT, PAGE_TITLE);
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
@@ -66,7 +66,7 @@ public class ProductController {
             if (product.getArticle() == null) {
                 map.addAttribute("noArticleSelected", "Es wurde kein Artikel ausgewählt!!");
             }
-            return loadPage(map, PAGE_EDIT);
+            return loadPage(map, PAGE_EDIT, PAGE_TITLE);
         } else if (editableProduct == null) {
             return createProduct(map, product);
         } else {
@@ -81,7 +81,7 @@ public class ProductController {
         productRepository.save(oldProduct);
         editableProduct = null;
 
-        return loadPage(map, PAGE_HOME);
+        return loadPage(map, PAGE_HOME, PAGE_TITLE);
     }
 
     private String createProduct(ModelMap map, Product product) {
@@ -91,27 +91,21 @@ public class ProductController {
                     + product.getArticle().getName() + "\" und dem Lieferanten \"" + product.getSupplier().getName()
                     + "\" ist bereits in der Datenbank vorhanden!!");
             initDropdownList(map);
-            return loadPage(map, PAGE_EDIT);
+            return loadPage(map, PAGE_EDIT, PAGE_TITLE);
         }
         productRepository.save(product);
-        return loadPage(map, PAGE_HOME);
+        return loadPage(map, PAGE_HOME, PAGE_TITLE);
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public String delete(ModelMap map, @PathVariable("id") String uuid) {
         try {
             productRepository.delete(UUID.fromString(uuid));
-            return loadPage(map, PAGE_HOME);
+            return loadPage(map, PAGE_HOME, PAGE_TITLE);
         } catch (EmptyResultDataAccessException exception) {
             // TODO: 1/3/18 Send Msg to User
-            return loadPage(map, PAGE_HOME);
+            return loadPage(map, PAGE_HOME, PAGE_TITLE);
         }
-    }
-
-    private String loadPage(ModelMap map, String page) {
-        map.addAttribute("content", page);
-        map.addAttribute("pageTitle", PAGE_TITLE);
-        return "admin/home";
     }
 
     private void initDropdownList(ModelMap map) {
