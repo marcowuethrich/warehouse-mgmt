@@ -37,5 +37,13 @@ $(document).ready(function () {
 });
 
 function loadProductInLocationEditMode(uuid) {
-    var id = uuid;
+    $.ajax({
+        url: '/admin/productToLocationEdit/' + uuid,
+        type: 'GET',
+        success: function (response) {
+            document.open();
+            document.write(response);
+            document.close();
+        }
+    });
 }
