@@ -15,7 +15,7 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping(path = "/admin/categories")
-public class CategoryController {
+public class CategoryController extends PageController {
     private final CategoryRepository categoryRepository;
     private static final String PAGE_TITLE = "Kategorien";
     private static final String PAGE_HOME = "categories";
@@ -29,7 +29,7 @@ public class CategoryController {
 
     @GetMapping("/")
     public String getCategory(ModelMap map) {
-        return loadPage(map, PAGE_HOME);
+        return loadPage(map, PAGE_HOME, PAGE_TITLE);
     }
 
     @GetMapping("/{uuid}")
@@ -43,21 +43,21 @@ public class CategoryController {
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create(ModelMap map, Category category) {
         map.addAttribute("category", category);
-        return loadPage(map, PAGE_EDIT);
+        return loadPage(map, PAGE_EDIT, PAGE_TITLE);
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String edit(ModelMap map, @PathVariable String id) {
         editableCategory = categoryRepository.findOne(UUID.fromString(id));
         map.addAttribute("category", editableCategory);
-        return loadPage(map, PAGE_EDIT);
+        return loadPage(map, PAGE_EDIT, PAGE_TITLE);
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String createNewCategorySubmit(@Valid Category category, BindingResult bindingResult, ModelMap map) {
 
         if (bindingResult.hasErrors()) {
-            return loadPage(map, PAGE_EDIT);
+            return loadPage(map, PAGE_EDIT, PAGE_TITLE);
         } else if (editableCategory == null) {
             return createCategory(map, category);
         } else {
@@ -68,45 +68,39 @@ public class CategoryController {
     private String editCategory(ModelMap map, Category oldCategory, Category newCategory) {
         if (!oldCategory.getCode().equals(newCategory.getCode()) && categoryRepository.existsByCode(newCategory.getCode())) {
             map.addAttribute("errorUniqueCode", "Code already exist");
-            return loadPage(map, PAGE_EDIT);
+            return loadPage(map, PAGE_EDIT, PAGE_TITLE);
         } else if (!oldCategory.getName().equals(newCategory.getName()) && categoryRepository.existsByName(newCategory.getName())) {
             map.addAttribute("errorUniqueName", "Name already exist");
-            return loadPage(map, PAGE_EDIT);
+            return loadPage(map, PAGE_EDIT, PAGE_TITLE);
         }
         oldCategory.setCode(newCategory.getCode());
         oldCategory.setName(newCategory.getName());
         categoryRepository.save(oldCategory);
         editableCategory = null;
 
-        return loadPage(map, PAGE_HOME);
+        return loadPage(map, PAGE_HOME, PAGE_TITLE);
     }
 
     private String createCategory(ModelMap map, Category category) {
         if (categoryRepository.existsByCode(category.getCode())) {
             map.addAttribute("errorUniqueCode", "Code must be unique");
-            return loadPage(map, PAGE_EDIT);
+            return loadPage(map, PAGE_EDIT, PAGE_TITLE);
         } else if (categoryRepository.existsByName(category.getName())) {
             map.addAttribute("errorUniqueName", "Name must be unique");
-            return loadPage(map, PAGE_EDIT);
+            return loadPage(map, PAGE_EDIT, PAGE_TITLE);
         }
         categoryRepository.save(category);
-        return loadPage(map, PAGE_HOME);
+        return loadPage(map, PAGE_HOME, PAGE_TITLE);
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public String delete(ModelMap map, @PathVariable("id") String uuid) {
         try {
             categoryRepository.delete(UUID.fromString(uuid));
-            return loadPage(map, PAGE_HOME);
+            return loadPage(map, PAGE_HOME, PAGE_TITLE);
         } catch (EmptyResultDataAccessException exception) {
             // TODO: 1/3/18 Send Msg to User
-            return loadPage(map, PAGE_HOME);
+            return loadPage(map, PAGE_HOME, PAGE_TITLE);
         }
-    }
-
-    private String loadPage(ModelMap map, String page) {
-        map.addAttribute("content", page);
-        map.addAttribute("pageTitle", PAGE_TITLE);
-        return "admin/home";
     }
 }

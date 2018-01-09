@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping(path = "/admin/locations")
-public class LocationController {
+public class LocationController extends PageController {
     private final LocationRepository locationRepository;
     private static final String PAGE_TITLE = "Standorte";
     private static final String PAGE_HOME = "locations";
@@ -28,7 +28,7 @@ public class LocationController {
 
     @GetMapping("/")
     public String getLocation(ModelMap map) {
-        return loadPage(map, PAGE_HOME);
+        return loadPage(map, PAGE_HOME, PAGE_TITLE);
     }
 
     @GetMapping("/{uuid}")
@@ -40,21 +40,21 @@ public class LocationController {
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create(ModelMap map, Location location) {
         map.addAttribute("location", location);
-        return loadPage(map, PAGE_EDIT);
+        return loadPage(map, PAGE_EDIT, PAGE_TITLE);
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String edit(ModelMap map, @PathVariable String id) {
         editableLocation = locationRepository.findOne(UUID.fromString(id));
         map.addAttribute("location", editableLocation);
-        return loadPage(map, PAGE_EDIT);
+        return loadPage(map, PAGE_EDIT, PAGE_TITLE);
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String createNewLocationSubmit(@Valid Location location, BindingResult bindingResult, ModelMap map) {
 
         if (bindingResult.hasErrors()) {
-            return loadPage(map, PAGE_EDIT);
+            return loadPage(map, PAGE_EDIT, PAGE_TITLE);
         } else if (editableLocation == null) {
             return createLocation(map, location);
         } else {
@@ -65,38 +65,32 @@ public class LocationController {
     private String editLocation(ModelMap map, Location oldLocation, Location newLocation) {
         if (!oldLocation.getName().equals(newLocation.getName()) && locationRepository.existsByName(newLocation.getName())) {
             map.addAttribute("errorUniqueName", "Name already exist");
-            return loadPage(map, PAGE_EDIT);
+            return loadPage(map, PAGE_EDIT, PAGE_TITLE);
         }
         oldLocation.setName(newLocation.getName());
         locationRepository.save(oldLocation);
         editableLocation = null;
 
-        return loadPage(map, PAGE_HOME);
+        return loadPage(map, PAGE_HOME, PAGE_TITLE);
     }
 
     private String createLocation(ModelMap map, Location location) {
         if (locationRepository.existsByName(location.getName())) {
             map.addAttribute("errorUniqueName", "Name must be unique");
-            return loadPage(map, PAGE_EDIT);
+            return loadPage(map, PAGE_EDIT, PAGE_TITLE);
         }
         locationRepository.save(location);
-        return loadPage(map, PAGE_HOME);
+        return loadPage(map, PAGE_HOME, PAGE_TITLE);
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public String delete(ModelMap map, @PathVariable("id") String uuid) {
         try {
             locationRepository.delete(UUID.fromString(uuid));
-            return loadPage(map, PAGE_HOME);
+            return loadPage(map, PAGE_HOME, PAGE_TITLE);
         } catch (EmptyResultDataAccessException exception) {
             // TODO: 1/3/18 Send Msg to User
-            return loadPage(map, PAGE_HOME);
+            return loadPage(map, PAGE_HOME, PAGE_TITLE);
         }
-    }
-
-    private String loadPage(ModelMap map, String page) {
-        map.addAttribute("content", page);
-        map.addAttribute("pageTitle", PAGE_TITLE);
-        return "admin/home";
     }
 }

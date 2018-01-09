@@ -19,7 +19,7 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping(path = "/admin/articles")
-public class ArticleController {
+public class ArticleController extends PageController {
     private final ArticleRepository articleRepository;
     private final CategoryRepository categoryRepository;
     private final GroupRepository groupRepository;
@@ -47,7 +47,7 @@ public class ArticleController {
 
     @GetMapping("/")
     public String get(ModelMap map) {
-        return loadPage(map, PAGE_HOME);
+        return loadPage(map, PAGE_HOME, PAGE_TITLE);
     }
 
     @GetMapping("/{uuid}")
@@ -59,7 +59,7 @@ public class ArticleController {
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create(ModelMap map, Article article) {
         initDropdownList(map);
-        return loadPage(map, PAGE_EDIT);
+        return loadPage(map, PAGE_EDIT, PAGE_TITLE);
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
@@ -67,14 +67,14 @@ public class ArticleController {
         editableArticle = articleRepository.findOne(UUID.fromString(id));
         map.addAttribute("article", editableArticle);
         initDropdownList(map);
-        return loadPage(map, PAGE_EDIT);
+        return loadPage(map, PAGE_EDIT, PAGE_TITLE);
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String createNewArticleSubmit(@Valid Article article, BindingResult bindingResult, ModelMap map) {
         if (bindingResult.hasErrors()) {
             initDropdownList(map);
-            return loadPage(map, PAGE_EDIT);
+            return loadPage(map, PAGE_EDIT, PAGE_TITLE);
         } else if (editableArticle == null) {
             return createArticle(map, article);
         } else {
@@ -92,7 +92,7 @@ public class ArticleController {
         articleRepository.save(oldArticle);
         editableArticle = null;
 
-        return loadPage(map, PAGE_HOME);
+        return loadPage(map, PAGE_HOME, PAGE_TITLE);
     }
 
     private String createArticle(ModelMap map, Article article) {
@@ -102,31 +102,25 @@ public class ArticleController {
         if (article.getGroup().getCategory().getId() != article.getCategory().getId()) {
             map.addAttribute("errorFalseGroup", "Die \"Gruppe\" ist nicht in der \"Kategorie\" vorhanden!!");
             initDropdownList(map);
-            return loadPage(map, PAGE_EDIT);
+            return loadPage(map, PAGE_EDIT, PAGE_TITLE);
         } else if (article.getTyp().getTypGroup().getId() != article.getTypGroup().getId()) {
             map.addAttribute("errorFalseTyp", "Der \"Typ\" ist nicht in der \"Typ Gruppe\" vorhanden!!");
             initDropdownList(map);
-            return loadPage(map, PAGE_EDIT);
+            return loadPage(map, PAGE_EDIT, PAGE_TITLE);
         }
         articleRepository.save(article);
-        return loadPage(map, PAGE_HOME);
+        return loadPage(map, PAGE_HOME, PAGE_TITLE);
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public String delete(ModelMap map, @PathVariable("id") String uuid) {
         try {
             articleRepository.delete(UUID.fromString(uuid));
-            return loadPage(map, PAGE_HOME);
+            return loadPage(map, PAGE_HOME, PAGE_TITLE);
         } catch (EmptyResultDataAccessException exception) {
             // TODO: 1/3/18 Send Msg to User
-            return loadPage(map, PAGE_HOME);
+            return loadPage(map, PAGE_HOME, PAGE_TITLE);
         }
-    }
-
-    private String loadPage(ModelMap map, String page) {
-        map.addAttribute("content", page);
-        map.addAttribute("pageTitle", PAGE_TITLE);
-        return "admin/home";
     }
 
     private void initDropdownList(ModelMap map) {
