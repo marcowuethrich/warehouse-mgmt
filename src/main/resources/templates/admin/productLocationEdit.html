@@ -3,8 +3,9 @@
         <div class="panel-heading" th:text="${pageTitle}"></div>
         <div class="panel-body">
             <div class="row">
-                <label for="locationProductEditLocationSelect" class="col-sm-3 control-label">Standort</label>
-                <div class="col-sm-7">
+                <label for="locationProductEditLocationSelect"
+                       class="col-sm-3 col-sm-offset-2 control-label">Standort</label>
+                <div class="col-sm-5">
                     <select id="locationProductEditLocationSelect" class="form-control"
                             onchange="filterProductEditTable()"
                             title="Location">

@@ -11,8 +11,7 @@
                                 title="Category">
                             <option th:each="item : ${categories}"
                                     th:value="${item.id}"
-                                    th:text="${item.code}+' '+${item.name}"
-                                    th:attrif="${item.id == editArticle.id} ? selected='selected'">A Carrier
+                                    th:text="${item.code}+' '+${item.name}">
                             </option>
                         </select>
                     </div>
