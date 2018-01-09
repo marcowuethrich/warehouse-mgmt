@@ -78,6 +78,7 @@ public class ProductController extends PageController {
         oldProduct.setArticle(newProduct.getArticle());
         oldProduct.setSupplier(newProduct.getSupplier());
         oldProduct.setAmount(newProduct.getAmount());
+        oldProduct.setLocation(newProduct.getLocation());
         productRepository.save(oldProduct);
         editableProduct = null;
 

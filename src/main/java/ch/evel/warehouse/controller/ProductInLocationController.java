@@ -15,7 +15,7 @@ import java.util.UUID;
 @RequestMapping(path = "/admin/productInLocations")
 public class ProductInLocationController extends PageController {
     private final LocationRepository locationRepository;
-    private static final String PAGE_TITLE = "Produkteverteilung";
+    private static final String PAGE_TITLE = "Materialverteilung Übersicht";
     private static final String PAGE_HOME = "productInLocations";
     private static final String PAGE_EDIT = "productInLocation";
     private Location editableLocation;
@@ -64,6 +64,4 @@ public class ProductInLocationController extends PageController {
 
         return loadPage(map, PAGE_HOME, PAGE_TITLE);
     }
-
-
 }

@@ -16,7 +16,7 @@ public abstract class EntityModel {
     @Type(type = "uuid-char")
     @JsonView(DataTablesOutput.View.class)
     @Column(updatable = false, nullable = false, columnDefinition = "CHAR(40)")
-    UUID id = UUID.randomUUID();
+    protected UUID id = UUID.randomUUID();
 
     public UUID getId() {
         return id;

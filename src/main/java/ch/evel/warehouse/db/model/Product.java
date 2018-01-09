@@ -16,7 +16,7 @@ public class Product extends EntityModel {
     @JoinColumn(name = "supplier_id")
     private Supplier supplier;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JsonView(DataTablesOutput.View.class)
     @NotNull(message = "Can't be Null")
     @JoinColumn(name = "article_id")
