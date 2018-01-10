@@ -15,7 +15,7 @@ $(document).ready(function () {
             {
                 render: function (data, type, row, meta) {
                     return '<select id=\"locationProductEditLocationSelectInTable' + meta.row + '\" class=\"form-control\"' +
-                        '                            onchange=\"changeFieldColor(' + row + ')\"' +
+                        '                            onchange=\"changeFieldColor(this)\"' +
                         '                            title=\"Location\"></select>';
                 }
             },
@@ -42,7 +42,6 @@ $(document).ready(function () {
             filterProductEditTable();
         }
     });
-
 });
 
 function filterProductEditTable() {
@@ -65,18 +64,29 @@ function submitProductLocationTableChange() {
 
 }
 
-function changeFieldColor(row) {
-
+function changeFieldColor(select) {
+    var tr = $(select).closest('tr');
+    var or_loc = tr.find('td:eq(1)').text();
+    var ed_loc = $(select).find('option:selected').text();
+    if (or_loc === ed_loc || ed_loc === " - ") {
+        $(select).closest('td').removeAttr("style");
+    } else {
+        $(select).closest('td').css('background', '#ffc10745');
+    }
 }
 
 function initDropdown() {
     var table = $('table#productLocationEditTable').DataTable();
     table.rows().every(function (rowIdx, tableLoop, rowLoop) {
         var select = $('#locationProductEditLocationSelectInTable' + rowLoop);
-        select.empty();
-        $('#locationProductEditLocationSelect').find('option').clone().appendTo('#locationProductEditLocationSelectInTable' + rowLoop);
-        select.find('option:selected').removeAttr('selected');
-        select.children().first().remove();
-        select.append('<option value="nothing" selected="selected"> - </option>');
+        if (select.has('option').length === 0) {
+            select.empty();
+            $('#locationProductEditLocationSelect').find('option').clone().appendTo('#locationProductEditLocationSelectInTable' + rowLoop);
+            select.find('option:selected').removeAttr('selected');
+            select.children().first().remove();
+            select.append('<option value="nothing" selected="selected"> - </option>');
+
+        } else {
+        }
     });
 }
