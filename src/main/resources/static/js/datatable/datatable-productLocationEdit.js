@@ -14,15 +14,14 @@ $(document).ready(function () {
             {"data": "amount"},
             {
                 render: function (data, type, row, meta) {
-                    return '<select id=\"locationProductEditLocationSelectInTable' + meta.row + '\" class=\"form-control\"' +
-                        '                            onchange=\"changeLocationFieldColor(this)\"' +
-                        '                            title=\"Location\"></select>';
+                    return '<select id="locationProductEditLocationSelectInTable' + meta.row + '" class="form-control"' +
+                        '                            onchange="changeLocationFieldColor(this)" title="Location"></select>';
                 }
             },
             {
                 render: function (data, type, row, meta) {
-                    return '<input type="number" id="locationProductEditAmountSelectInTable" ' +
-                        'onchange="changeAmountFieldColor(this)" class="form-control" placeholder="1" \>';
+                    return '<input type="number" id="locationProductEditAmountSelectInTable' + meta.row + '"' +
+                        ' onkeyup="changeAmountFieldColor(this)" class="form-control" placeholder="1" \>';
                 }
             }
         ],
@@ -57,11 +56,64 @@ function filterProductEditTable() {
 
 
 function loadTableChangeToModal() {
+    var array = loadChanges();
+    if (array.length > 0) {
+        $('#removeProductLocationEditModal').modal();
+        var table = $('#productLocationChangeTable').find('tbody');
+
+        table.empty();
+        for (var i = 0, len = array.length; i < len; i++) {
+            var newRowContent = "<tr>" +
+                "<td>" + array[i].locationName + "</td>" +
+                "<td>-></td>" +
+                "<td>" + array[i].editAmount + "x " + array[i].articleName + "</td>" +
+                "<td>-></td>" +
+                "<td>" + array[i].editLocationName + "</td>" +
+                "</tr>";
+            table.append(newRowContent);
+        }
+    } else {
+        showDangerAlert("Keine Produkte zum verschieben!")
+    }
 
 }
 
 function submitProductLocationTableChange() {
 
+}
+
+function loadChanges() {
+    var arrayIndex = 0;
+    var array = [];
+    var table = $('table#productLocationEditTable').DataTable();
+    table.rows({search: 'applied'}).every(function (rowIdx, tableLoop, rowLoop) {
+        var row = table.row(this.node()).data();
+        var articleName = row.article.name;
+        var locationName = row.location.name;
+
+        var editLocationNameSelect = $('#locationProductEditLocationSelectInTable' + rowIdx);
+        var changeAmountSelect = $('#locationProductEditAmountSelectInTable' + rowIdx);
+        var editLocTd = $(editLocationNameSelect).closest('td');
+        var amountTd = $(changeAmountSelect).closest('td');
+        try {
+            var bo_editLoc = $(editLocTd).attr('style').indexOf('background') != null;
+            var bo_editAmount = $(amountTd).attr('style').indexOf('background') != null;
+            if (bo_editLoc && bo_editAmount) {
+
+                array[arrayIndex] = {
+                    locationId: row.id,
+                    articleName: articleName,
+                    locationName: locationName,
+                    editLocationName: $(editLocationNameSelect).find('option:selected').text(),
+                    editAmount: $(changeAmountSelect).val()
+                };
+                arrayIndex++;
+            }
+        } catch (error) {
+            console.log("Error: one row has no background on \"Location dropdown\" and \"To change amount Field\"")
+        }
+    });
+    return array;
 }
 
 function changeLocationFieldColor(select) {
