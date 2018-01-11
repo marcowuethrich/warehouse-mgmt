@@ -1,6 +1,11 @@
 # warehouse-mgmt
 Webservice for Management of electrical materials
 
+####Features
+- CRUD of Material (Typ, TypGroup, Location, Supplier, Category, Length, Group, Color)
+- Crud of Article and the Products
+- Manage which product is in which location
+
 
 ### Theme
 - SB Admin 2 

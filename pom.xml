@@ -5,7 +5,7 @@
 
     <groupId>ch.evel</groupId>
     <artifactId>warehouse</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.1.0</version>
     <packaging>jar</packaging>
 
     <name>Warehouse</name>
@@ -68,15 +68,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
-
-        <!-- https://mvnrepository.com/artifact/net.sourceforge.nekohtml/nekohtml
-        <dependency>
-            <groupId>net.sourceforge.nekohtml</groupId>
-            <artifactId>nekohtml</artifactId>
-            <version>1.9.21</version>
-        </dependency>
-        -->
     </dependencies>
     <build>
         <plugins>

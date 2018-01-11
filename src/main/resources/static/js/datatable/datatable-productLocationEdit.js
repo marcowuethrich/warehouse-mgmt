@@ -21,7 +21,7 @@ $(document).ready(function () {
             {
                 render: function (data, type, row, meta) {
                     return '<input type="number" id="locationProductEditAmountSelectInTable' + meta.row + '"' +
-                        ' onkeyup="changeAmountFieldColor(this)" class="form-control" placeholder="1" \>';
+                        ' onchange="changeAmountFieldColor(this)" class="form-control" placeholder="1" \>';
                 }
             }
         ],
@@ -79,7 +79,38 @@ function loadTableChangeToModal() {
 }
 
 function submitProductLocationTableChange() {
+    var array = loadChanges();
+    var success = true;
+    if (!sendChangeToBackend(array)) {
+        success = false;
+    }
+    $.ajax({
+        url: '/admin/productToLocationEdit/reload/' + success,
+        type: 'GET',
+        success: function (response) {
+            document.open();
+            document.write(response);
+            document.close();
+        }
+    });
+}
 
+function sendChangeToBackend(array) {
+    var success = true;
+    for (var i = 0; i < array.length; i++) {
+        var getUrl = '/admin/productToLocationEdit/change/'
+            + array[i].productId
+            + '/' + array[i].editLocationName
+            + '/' + array[i].editAmount;
+        $.ajax({
+            url: getUrl,
+            type: 'GET',
+            fail: function (data, textStatus, xhr) {
+                success = false;
+            }
+        });
+    }
+    return success;
 }
 
 function loadChanges() {
@@ -88,6 +119,8 @@ function loadChanges() {
     var table = $('table#productLocationEditTable').DataTable();
     table.rows({search: 'applied'}).every(function (rowIdx, tableLoop, rowLoop) {
         var row = table.row(this.node()).data();
+        var articleId = row.article.id;
+        var productId = row.id;
         var articleName = row.article.name;
         var locationName = row.location.name;
 
@@ -101,7 +134,8 @@ function loadChanges() {
             if (bo_editLoc && bo_editAmount) {
 
                 array[arrayIndex] = {
-                    locationId: row.id,
+                    productId: productId,
+                    articleId: articleId,
                     articleName: articleName,
                     locationName: locationName,
                     editLocationName: $(editLocationNameSelect).find('option:selected').text(),

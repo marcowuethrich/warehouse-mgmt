@@ -9,4 +9,6 @@ import java.util.UUID;
 public interface LocationRepository extends CrudRepository<Location, UUID> {
     boolean existsByName(String name);
     List<Location> findAllByOrderByNameAsc();
+
+    Location findByName(String name);
 }

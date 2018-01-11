@@ -9,6 +9,7 @@ import java.util.UUID;
 
 public interface ProductRepository extends CrudRepository<Product, UUID> {
     boolean existsProductByArticle(Article article);
-
     boolean existsProductByLocation(Location location);
+
+    Product findProductByLocationAndArticle(Location location, Article article);
 }

@@ -8,5 +8,26 @@
             <strong id="alertDTitle">Achtung!</strong> <i id="alertDMessage"></i>
         </div>
     </div>
+    <br/>
+    <div class="col-lg-12">
+        <div class="alert alert-success alert-dismissable fade in hidden" id="alertS">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong id="alertSTitle">Juppi</strong> <i id="alertSMessage"></i>
+        </div>
+    </div>
+
+    <div class="col-lg-12" th:if="${msgError}">
+        <div class="alert alert-danger alert-dismissable fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Achtung!</strong> <i th:text="${msgError}"></i>
+        </div>
+    </div>
+    <br/>
+    <div class="col-lg-12" th:if="${msgSuccess}">
+        <div class="alert alert-success alert-dismissable fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Juppi</strong> <i th:text="${msgSuccess}"></i>
+        </div>
+    </div>
 </div>
 
