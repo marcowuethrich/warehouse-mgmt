@@ -18,7 +18,7 @@ public class TypGroupRestController {
 
     @JsonView(DataTablesOutput.View.class)
     @RequestMapping(path = "/data/typgroups", method = RequestMethod.GET)
-    public DataTablesOutput<TypGroup> gettypeGroups(DataTablesInput input) {
+    public DataTablesOutput<TypGroup> getTypeGroups(DataTablesInput input) {
         return typgroupRestRepository.findAll(input);
     }
 }

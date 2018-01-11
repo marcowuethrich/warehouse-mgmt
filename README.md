@@ -24,3 +24,9 @@ https://blackrockdigital.github.io/startbootstrap-sb-admin-2/pages/index.html
 ## Other libs
 - Datatable -> https://datatables.net/
 - Bootstrap 3 -> https://getbootstrap.com/docs/3.3/
+
+
+##Run
+
+1. "mvn package"
+2. "java -jar target/warehouse-{version}"
